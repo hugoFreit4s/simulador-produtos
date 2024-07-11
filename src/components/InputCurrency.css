@@ -1,0 +1,9 @@
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-title{
+    font-size: 15px;
+    color: white;
+}
