@@ -4,6 +4,9 @@ import InputCurrency from '../components/InputCurrency';
 import { Link } from 'react-router-dom';
 import './Boletos.css';
 import { Checkbox } from '@mui/joy';
+import Button from '@mui/joy/Button';
+import CheckIcon from '@mui/icons-material/Check';
+import { ArrowForwardIos } from '@mui/icons-material';
 
 function Boletos() {
     const [saldoMedio, setSaldoMedio] = React.useState('');
@@ -13,11 +16,16 @@ function Boletos() {
     const [diasFloat, setDiasFloat] = React.useState('');
     const [CDIauferido1Dia, setCDIauferido1Dia] = React.useState('');
     const [percentageCentralizacao2, setpercentageCentralizacao2] = React.useState('');
-
-    const [isChecked, setIsChecked] = React.useState('');
-    const [isChecked2, setIsChecked2] = React.useState('');
-
-
+    const [isChecked, setIsChecked] = React.useState(false);
+    const [isChecked2, setIsChecked2] = React.useState(false);
+    const [diasProtesto, setdiasProtesto] = React.useState('');
+    const [tarifaProtesto, setTarifaProtesto] = React.useState('');
+    const [isCheckedEmissao2Via, setisCheckedEmissao2Via1] = React.useState(false);
+    const [isCheckedEmissao2Via2, setisCheckedEmissao2Via2] = React.useState(false);
+    const [tarifaProrrogacaoTVencido, setTarifaProrrogacaoTVencido] = React.useState('');
+    const [tarifaManutencaoTVencido, setTarifaManutencaoTVencido] = React.useState('');
+    const [isCheckedBancoCorrespondente, setisCheckedBancoCorrespondente] = React.useState('');
+    const [isCheckedBancoCorrespondente2, setisCheckedBancoCorrespondente2] = React.useState('');
 
     const handleSMchange = event => {
         localStorage.setItem('saldoMedioLS', event.target.value);
@@ -54,19 +62,69 @@ function Boletos() {
         setpercentageCentralizacao2(e.target.value);
     }
 
-    const handleCheckbox1 = (event) => {
-        setIsChecked(event.target.checked);
-        if (event.target.checked) {
+    const handleCheckbox1 = (e) => {
+        setIsChecked(e.target.checked);
+        if (e.target.checked) {
             setIsChecked2(false);
         }
     };
 
-    const handleCheckbox2 = (event) => {
-        setIsChecked2(event.target.checked);
-        if (event.target.checked) {
+    const handleCheckbox2 = (e) => {
+        setIsChecked2(e.target.checked);
+        if (e.target.checked) {
             setIsChecked(false);
         }
     };
+
+    const handleDiasProtesto = e => {
+        localStorage.setItem('diasProtesto', e.target.value);
+        setdiasProtesto(e.target.value);
+    };
+
+    const handleTarifaProtesto = e => {
+        localStorage.setItem('tarifaProtesto', e.target.value);
+        setTarifaProtesto(e.target.value);
+    };
+
+    const handleEmissaoSegundaVia1 = (e) => {
+        setisCheckedEmissao2Via1(e.target.checked);
+        if (e.target.checked) {
+            setisCheckedEmissao2Via2(false);
+        }
+    };
+
+    const handleEmissaoSegundaVia2 = (e) => {
+        setisCheckedEmissao2Via2(e.target.checked);
+        if (e.target.checked) {
+            setisCheckedEmissao2Via1(false);
+        }
+    };
+
+    const handleTarifaProrrogacaoTVencido = e => {
+        localStorage.setItem('tarifaProrrogacaoTVencido', e.target.value);
+        setTarifaProrrogacaoTVencido(e.target.value);
+    };
+
+    const handleTarifaManutencaoTVencido = e => {
+        localStorage.setItem('tarifaManutencaoTVencido', e.target.value);
+        setTarifaManutencaoTVencido(e.target.value);
+    };
+
+    const handleBancoCorrespondente = e => {
+        setisCheckedBancoCorrespondente(e.target.checked);
+        if (e.target.checked) {
+            setisCheckedBancoCorrespondente2(false);
+        }
+    }
+
+    const handleBancoCorrespondente2 = e => {
+        setisCheckedBancoCorrespondente2(e.target.checked);
+        if (e.target.checked) {
+            setisCheckedBancoCorrespondente(false);
+        }
+    }
+
+
     return (
         <div className="Boletos">
             <Link to="/">
@@ -83,8 +141,9 @@ function Boletos() {
                     <InputCurrency value={percentageSaldoMedio} onChange={handlePercentageSMchange} placeholder={'Insira aqui!'} title={'(B) % Sobre Saldo Médio'} />
                     <InputCurrency value={taxaCDI} onChange={handleTaxaCDI} placeholder={'Insira aqui!'} title={'(C) Taxa CDI (a.m)'} />
                     <InputCurrency value={percentageCetralizacao} onChange={handlePercentageCentralizacao} placeholder={'Insira aqui!'} title={'(D) % Centralização'} />
-
-                    <p style={{ color: 'white' }}>(=) Receita Estimada</p>
+                    <div className="text-box">
+                        <p style={{ color: 'white' }}>(=) Receita Estimada</p>
+                    </div>
                 </div>
 
                 <div className="centralizacao-financeira-2">
@@ -94,22 +153,50 @@ function Boletos() {
                     <InputCurrency value={CDIauferido1Dia} onChange={handleCDIauferido1Dia} placeholder={'Insira aqui!'} title={'(B) Taxa CDI auferida por 1 dia'} />
                     <InputCurrency value={percentageCentralizacao2} onChange={handlePercentageCentralizacao2} placeholder={'Insira aqui!'} title={'(C) % Centralização'} />
 
-                    <p className="common-text" style={{ color: 'white' }}>(=) Receita estimada:</p>
-                    <p className="common-text" style={{ color: 'white' }}>(=) Receita total (1) + (2):</p>
-                    <p className="common-text" style={{ color: 'white' }}>(=) Quantidade boletos liquidados:</p>
-                    <p className="common-text" style={{ color: 'white' }}>(=) Receita gerada por boleto:</p>
+                    <div className="text-box">
+                        <p className="common-text" style={{ color: 'white' }}>(=) Receita estimada:</p>
+                        <p className="common-text" style={{ color: 'white' }}>(=) Receita total (1) + (2):</p>
+                        <p className="common-text" style={{ color: 'white' }}>(=) Quantidade boletos liquidados:</p>
+                        <p className="common-text" style={{ color: 'white' }}>(=) Receita gerada por boleto:</p>
+                    </div>
 
                     <hr />
 
                     <div className="inputs">
-                        <div id="input-1">
+                        <div className="input-checkbox">
                             <p className="common-text">Protesto:</p>
                             <div style={{ display: 'flex', gap: '40px' }}>
-                                <Checkbox checked={isChecked} color="primary" size="md" variant="solid" label="SIM" onChange={handleCheckbox1} />
-                                <Checkbox checked={isChecked2} color="primary" size="md" variant="solid" label="NÃO" onChange={handleCheckbox2} />
+                                <Checkbox checked={isChecked} color="primary" size="md" variant="outlined" label="SIM" onChange={handleCheckbox1} />
+                                <Checkbox checked={isChecked2} color="primary" size="md" variant="outlined" label="NÃO" onChange={handleCheckbox2} />
+                            </div>
+                        </div>
+                        <div id="inputs-currency">
+                            <InputCurrency value={diasProtesto} onChange={handleDiasProtesto} placeholder={'Insira aqui!'} title={'Dias de Protesto'} />
+                            <InputCurrency value={tarifaProtesto} onChange={handleTarifaProtesto} placeholder={'Insira aqui!'} title={'Tarifa Protesto'} />
+                        </div>
+                        <div className="input-checkbox">
+                            <p className="common-text">Emissão 2ª Via:</p>
+                            <div style={{ display: 'flex', gap: '40px' }}>
+                                <Checkbox checked={isCheckedEmissao2Via} color="primary" size="md" variant="outlined" label="SIM" onChange={handleEmissaoSegundaVia1} />
+                                <Checkbox checked={isCheckedEmissao2Via2} color="primary" size="md" variant="outlined" label="NÃO" onChange={handleEmissaoSegundaVia2} />
+                            </div>
+                        </div>
+                        <div id="inputs-currency">
+                            <InputCurrency value={tarifaProrrogacaoTVencido} onChange={handleTarifaProrrogacaoTVencido} placeholder={'Insira aqui!'} title={'Tarifa Prorrogação de Título Vencido'} />
+                            <InputCurrency value={tarifaManutencaoTVencido} onChange={handleTarifaManutencaoTVencido} placeholder={'Insira aqui!'} title={'Tarifa Manutenção de Título Vencido'} />
+                        </div>
+                        <div className="input-checkbox">
+                            <p className="common-text">Banco Correspondente:</p>
+                            <div style={{ display: 'flex', gap: '40px' }}>
+                                <Checkbox checked={isCheckedBancoCorrespondente} color="primary" size="md" variant="outlined" label="SIM" onChange={handleBancoCorrespondente} />
+                                <Checkbox checked={isCheckedBancoCorrespondente2} color="primary" size="md" variant="outlined" label="NÃO" onChange={handleBancoCorrespondente2} />
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="buttons">
+                    <Button color="success" startDecorator={<CheckIcon />}>Simular apenas boletos</Button>
+                    <Button endDecorator={<ArrowForwardIos />}>Simular mais produtos</Button>
                 </div>
             </div>
             <footer>

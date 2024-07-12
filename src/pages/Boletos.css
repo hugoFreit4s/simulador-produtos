@@ -2,7 +2,6 @@ body{
   margin: 0;
   background: url("../../public/background.png");
   background-size: auto;
-  background-repeat: repeat-y;
 }
 
 header{
@@ -26,38 +25,73 @@ header{
   font-family: 'Quicksand', sans-serif;
 }
 
-
-
 .common-text{
   color: white;
   font-family: 'Quicksand', sans-serif;
+  font-size: 15px;
+  background-color: rgba(0, 0, 0, 0.521);
+  width: fit-content;
 }
 
 .inputs{
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 100%;
 }
 
-#input-1{
+.input-checkbox{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 40%;
+  margin-left: 22px;
 }
 
 label{
   color: white;
 }
 
+.text-box{
+  margin-left: 20px;
+}
+
+.buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 35px;
+}
+
 @media (max-width:992px) {
   .main{
     display: flex;
-    align-items: center;
   }
   .logo{
-    height: 100px;
+    height: 80px;
   }
   .label{
     font-size: 20px;
+  }
+  .inputs{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 20px;
+  }
+  .buttons{
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 35px;
+  }
+
+  .input-checkbox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
   }
 }
