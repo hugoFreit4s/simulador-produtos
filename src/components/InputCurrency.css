@@ -6,4 +6,8 @@
 .input-title{
     font-size: 15px;
     color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    background-color: rgba(0, 0, 0, 0.521);
+    width: fit-content;
 }
