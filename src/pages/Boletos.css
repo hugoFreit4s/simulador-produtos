@@ -1,0 +1,21 @@
+body{
+  margin: 0;
+  background: url("../../public/background.png");
+  background-size: auto;
+  background-repeat: repeat-y;
+}
+
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width:320px) {
+  .logo{
+    height: 100px;
+  }
+  .label{
+    font-size: 20px;
+  }
+}

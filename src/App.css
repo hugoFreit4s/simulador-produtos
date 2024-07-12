@@ -6,19 +6,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: auto;
 }
 
 .main{
   display: flex;
   flex-direction: column;
-}
-
-@media (min-width:320px) {
-  .logo{
-    height: 100px;
-  }
-  .label{
-    font-size: 20px;
-  }
 }
