@@ -1,30 +1,20 @@
 import React from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
+import Button from '@mui/joy/Button';
 
 function App() {
-
-  const [saldoMedio, setSaldoMedio] = React.useState('');
-  const [percentageSaldoMedio, setpercentageSaldoMedio] = React.useState('');
-
-  const handleSMchange = event => {
-    localStorage.setItem('saldoMedioLS', event.target.value);
-    setSaldoMedio(event.target.value);
-  };
-
-  const handlePercentageSMchange = event => {
-    localStorage.setItem('percentageSaldoMedioLS', event.target.value);
-    setpercentageSaldoMedio(event.target.value);
-  }
-
   return (
     <div className="App">
-      <Link to="/boletos">
-        <button>Boletos</button>
-      </Link>
-      <Link to="/produtos">
-        <button>Produtos</button>
-      </Link>
+      <img src='logo.png' style={{ height: '100px', width: '250px' }} />
+      <div className="navigation">
+        <Link to="/boletos">
+          <Button className="btn-navegacao" size="lg" variant="soft">Boletos</Button>
+        </Link>
+        <Link to="/produtos">
+          <Button className="btn-navegacao" size="lg" variant="soft">Produtos</Button>
+        </Link>
+      </div>
     </div>
   );
 }

@@ -24,8 +24,8 @@ function Boletos() {
     const [isCheckedEmissao2Via2, setisCheckedEmissao2Via2] = React.useState(false);
     const [tarifaProrrogacaoTVencido, setTarifaProrrogacaoTVencido] = React.useState('');
     const [tarifaManutencaoTVencido, setTarifaManutencaoTVencido] = React.useState('');
-    const [isCheckedBancoCorrespondente, setisCheckedBancoCorrespondente] = React.useState('');
-    const [isCheckedBancoCorrespondente2, setisCheckedBancoCorrespondente2] = React.useState('');
+    const [isCheckedBancoCorrespondente, setisCheckedBancoCorrespondente] = React.useState(false);
+    const [isCheckedBancoCorrespondente2, setisCheckedBancoCorrespondente2] = React.useState(false);
 
     const handleSMchange = event => {
         localStorage.setItem('saldoMedioLS', event.target.value);
@@ -160,7 +160,7 @@ function Boletos() {
                         <p className="common-text" style={{ color: 'white' }}>(=) Receita gerada por boleto:</p>
                     </div>
 
-                    <hr />
+                    <hr style={{border: '3px solid white'}}/>
 
                     <div className="inputs">
                         <div className="input-checkbox">
