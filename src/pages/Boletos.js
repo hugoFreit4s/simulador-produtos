@@ -16,8 +16,8 @@ function Boletos() {
     const [diasFloat, setDiasFloat] = React.useState('');
     const [CDIauferido1Dia, setCDIauferido1Dia] = React.useState('');
     const [percentageCentralizacao2, setpercentageCentralizacao2] = React.useState('');
-    const [isChecked, setIsChecked] = React.useState(false);
-    const [isChecked2, setIsChecked2] = React.useState(false);
+    const [isChecked, setIsProtesto1Checked] = React.useState(false);
+    const [isChecked2, setIsProtesto2Checked] = React.useState(false);
     const [diasProtesto, setdiasProtesto] = React.useState('');
     const [tarifaProtesto, setTarifaProtesto] = React.useState('');
     const [isCheckedEmissao2Via, setisCheckedEmissao2Via1] = React.useState(false);
@@ -62,17 +62,18 @@ function Boletos() {
         setpercentageCentralizacao2(e.target.value);
     }
 
-    const handleCheckbox1 = (e) => {
-        setIsChecked(e.target.checked);
+    const handleCheckboxProtesto1 = (e) => {
+        setIsProtesto1Checked(e.target.checked);
         if (e.target.checked) {
-            setIsChecked2(false);
+            setIsProtesto2Checked(false);
         }
     };
 
-    const handleCheckbox2 = (e) => {
-        setIsChecked2(e.target.checked);
+    const handleCheckboxProtesto2 = (e) => {
+        setIsProtesto2Checked(e.target.checked);
         if (e.target.checked) {
-            setIsChecked(false);
+            setIsProtesto1Checked(false);
+            // document.getElementById("sem-protesto").
         }
     };
 
@@ -166,8 +167,8 @@ function Boletos() {
                         <div className="input-checkbox">
                             <p className="common-text">Protesto:</p>
                             <div style={{ display: 'flex', gap: '40px' }}>
-                                <Checkbox checked={isChecked} color="primary" size="md" variant="outlined" label="SIM" onChange={handleCheckbox1} />
-                                <Checkbox checked={isChecked2} color="primary" size="md" variant="outlined" label="NÃO" onChange={handleCheckbox2} />
+                                <Checkbox checked={isChecked} color="primary" size="sm" variant="outlined" label="SIM" onChange={handleCheckboxProtesto1} />
+                                <Checkbox checked={isChecked2} id="sem-protesto" color="primary" size="sm" variant="outlined" label="NÃO" onChange={handleCheckboxProtesto2} />
                             </div>
                         </div>
                         <div id="inputs-currency">
@@ -177,8 +178,8 @@ function Boletos() {
                         <div className="input-checkbox">
                             <p className="common-text">Emissão 2ª Via:</p>
                             <div style={{ display: 'flex', gap: '40px' }}>
-                                <Checkbox checked={isCheckedEmissao2Via} color="primary" size="md" variant="outlined" label="SIM" onChange={handleEmissaoSegundaVia1} />
-                                <Checkbox checked={isCheckedEmissao2Via2} color="primary" size="md" variant="outlined" label="NÃO" onChange={handleEmissaoSegundaVia2} />
+                                <Checkbox checked={isCheckedEmissao2Via} color="primary" size="sm" variant="outlined" label="SIM" onChange={handleEmissaoSegundaVia1} />
+                                <Checkbox checked={isCheckedEmissao2Via2} color="primary" size="sm" variant="outlined" label="NÃO" onChange={handleEmissaoSegundaVia2} />
                             </div>
                         </div>
                         <div id="inputs-currency">
@@ -188,8 +189,8 @@ function Boletos() {
                         <div className="input-checkbox">
                             <p className="common-text">Banco Correspondente:</p>
                             <div style={{ display: 'flex', gap: '40px' }}>
-                                <Checkbox checked={isCheckedBancoCorrespondente} color="primary" size="md" variant="outlined" label="SIM" onChange={handleBancoCorrespondente} />
-                                <Checkbox checked={isCheckedBancoCorrespondente2} color="primary" size="md" variant="outlined" label="NÃO" onChange={handleBancoCorrespondente2} />
+                                <Checkbox checked={isCheckedBancoCorrespondente} color="primary" size="sm" variant="outlined" label="SIM" onChange={handleBancoCorrespondente} />
+                                <Checkbox checked={isCheckedBancoCorrespondente2} color="primary" size="sm" variant="outlined" label="NÃO" onChange={handleBancoCorrespondente2} />
                             </div>
                         </div>
                     </div>
