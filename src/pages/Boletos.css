@@ -26,6 +26,29 @@ header{
   font-family: 'Quicksand', sans-serif;
 }
 
+
+
+.common-text{
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+#input-1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+label{
+  color: white;
+}
+
 @media (max-width:992px) {
   .main{
     display: flex;
