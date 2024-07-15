@@ -115,14 +115,18 @@ function Boletos() {
                             </div>
                         </div>
                         <div className="input">
-                            <InputCurrency className="input" value={formData.baixaAutomaticaTVendidos} onChange={(e) => handleInputChange('baixaAutomaticaTVendidos', e.target.value)} placeholder={'Insira aqui!'} title={'Tarifa Emissão Segunda ViaBaixa Automatica Titulos Vendidos (Dias)'} />
+                            <InputCurrency className="input" value={formData.baixaAutomaticaTVendidos} onChange={(e) => handleInputChange('baixaAutomaticaTVendidos', e.target.value)} placeholder={'Insira aqui!'} title={'Baixa Automatica Titulos Vendidos (Dias)'} />
                             <InputCurrency className="input" value={formData.tarifaEmissaoSegundaVia} onChange={(e) => handleInputChange('tarifaEmissaoSegundaVia', e.target.value)} placeholder={'Insira aqui!'} title={'Tarifa Emissão Segunda Via'} />
                         </div>
                     </div>
                 </div>
                 <div className="buttons">
-                    <Button color="success" startDecorator={<CheckIcon />}>Simular apenas boletos</Button>
-                    <Button endDecorator={<ArrowForwardIos />}>Simular mais produtos</Button>
+                    <Link to="/resultado-boleto">
+                        <Button color="success" startDecorator={<CheckIcon />}>Simular apenas boletos</Button>
+                    </Link>
+                    <Link to="/lista-produtos">
+                        <Button endDecorator={<ArrowForwardIos />}>Simular mais produtos</Button>
+                    </Link>
                 </div>
             </div>
         </div>

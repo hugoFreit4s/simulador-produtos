@@ -1,0 +1,41 @@
+body{
+    margin: 0;
+}
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+}
+.custos-por-emissao{
+    display: flex;
+    flex-direction: column;
+}
+.dados{
+    display: flex;
+    gap: 100px;
+}
+.cabecalho{
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+#subcabecalho{
+    display: flex;
+    gap: 70px;
+}
+.nome{
+    background-color: rgba(0, 0, 0, 0.521);
+    width: fit-content;    
+}
+
+.valores-unitarios{
+    background-color: rgba(0, 0, 0, 0.521);
+    width: fit-content;    
+}
+
+.valores-totais{
+    background-color: rgba(0, 0, 0, 0.521);
+    width: fit-content;    
+}
