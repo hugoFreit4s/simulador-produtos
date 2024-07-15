@@ -27,6 +27,8 @@ function Boletos() {
         tarifaManutencaoTVencido: '',
         isCheckedBancoCorrespondente1: false,
         isCheckedBancoCorrespondente2: false,
+        baixaAutomaticaTVendidos: '',
+        tarifaEmissaoSegundaVia: '',
     });
 
     const handleInputChange = (field, value) => {
@@ -90,7 +92,7 @@ function Boletos() {
                                 <Checkbox checked={formData.isCheckedProtesto2} color="primary" size="sm" variant="outlined" label="NÃO" onChange={(e) => handleCheckboxChange('isCheckedProtesto2', 'isCheckedProtesto1', e.target.checked)} />
                             </div>
                         </div>
-                        <div id="inputs-currency" className="inputs-protesto">
+                        <div className="input">
                             <InputCurrency className="input" value={formData.diasProtesto} onChange={(e) => handleInputChange('diasProtesto', e.target.value)} placeholder={'Insira aqui!'} title={'Dias de Protesto'} />
                             <InputCurrency className="input" value={formData.tarifaProtesto} onChange={(e) => handleInputChange('tarifaProtesto', e.target.value)} placeholder={'Insira aqui!'} title={'Tarifa Protesto'} />
                         </div>
@@ -101,7 +103,7 @@ function Boletos() {
                                 <Checkbox checked={formData.isCheckedEmissao2Via2} color="primary" size="sm" variant="outlined" label="NÃO" onChange={(e) => handleCheckboxChange('isCheckedEmissao2Via2', 'isCheckedEmissao2Via1', e.target.checked)} />
                             </div>
                         </div>
-                        <div id="inputs-currency">
+                        <div className="input">
                             <InputCurrency className="input" value={formData.tarifaProrrogacaoTVencido} onChange={(e) => handleInputChange('tarifaProrrogacaoTVencido', e.target.value)} placeholder={'Insira aqui!'} title={'Tarifa Prorrogação de Título Vencido'} />
                             <InputCurrency className="input" value={formData.tarifaManutencaoTVencido} onChange={(e) => handleInputChange('tarifaManutencaoTVencido', e.target.value)} placeholder={'Insira aqui!'} title={'Tarifa Manutenção de Título Vencido'} />
                         </div>
@@ -111,6 +113,10 @@ function Boletos() {
                                 <Checkbox checked={formData.isCheckedBancoCorrespondente1} color="primary" size="sm" variant="outlined" label="SIM" onChange={(e) => handleCheckboxChange('isCheckedBancoCorrespondente1', 'isCheckedBancoCorrespondente2', e.target.checked)} />
                                 <Checkbox checked={formData.isCheckedBancoCorrespondente2} color="primary" size="sm" variant="outlined" label="NÃO" onChange={(e) => handleCheckboxChange('isCheckedBancoCorrespondente2', 'isCheckedBancoCorrespondente1', e.target.checked)} />
                             </div>
+                        </div>
+                        <div className="input">
+                            <InputCurrency className="input" value={formData.baixaAutomaticaTVendidos} onChange={(e) => handleInputChange('baixaAutomaticaTVendidos', e.target.value)} placeholder={'Insira aqui!'} title={'Tarifa Emissão Segunda ViaBaixa Automatica Titulos Vendidos (Dias)'} />
+                            <InputCurrency className="input" value={formData.tarifaEmissaoSegundaVia} onChange={(e) => handleInputChange('tarifaEmissaoSegundaVia', e.target.value)} placeholder={'Insira aqui!'} title={'Tarifa Emissão Segunda Via'} />
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@ function Produtos() {
             <Link to="/">
                 <i className="fa fa-arrow-circle-left" style={{ fontSize: '40px', cursor: 'pointer', color: 'white', marginLeft: '20px' }}></i>
             </Link>
-            {localStorage.getItem("saldoMedioLS")}
+            {'saldo medio' + localStorage.getItem("percentageSaldoMedio")}
         </div>
     )
 }
