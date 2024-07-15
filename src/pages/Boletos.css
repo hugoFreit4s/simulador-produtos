@@ -1,31 +1,32 @@
-body{
+body {
   margin: 0;
   background: url("../../public/background.png");
   background-size: auto;
 }
 
-header{
+header {
   display: flex;
   justify-content: center;
 }
 
-.logo{
+.logo {
   height: 80px;
 }
 
-.main{
+.main {
   margin: 20px;
   display: flex;
   justify-content: left;
   text-align: left;
+  flex-wrap: wrap;
 }
 
-.label{
+.label {
   text-align: center;
   font-family: 'Quicksand', sans-serif;
 }
 
-.common-text{
+.common-text {
   color: white;
   font-family: 'Quicksand', sans-serif;
   font-size: 15px;
@@ -33,13 +34,13 @@ header{
   width: fit-content;
 }
 
-.inputs{
+.inputs {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.input-checkbox{
+.input-checkbox {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,15 +48,15 @@ header{
   margin-left: 22px;
 }
 
-label{
+label {
   color: white;
 }
 
-.text-box{
+.text-box {
   margin-left: 20px;
 }
 
-.buttons{
+.buttons {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,23 +64,29 @@ label{
   margin-top: 35px;
 }
 
-@media (max-width:992px) {
-  .main{
+@media (max-width: 992px) {
+  .main {
     display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .logo{
+
+  .logo {
     height: 80px;
   }
-  .label{
+
+  .label {
     font-size: 20px;
   }
-  .inputs{
+
+  .inputs {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin-left: 20px;
   }
-  .buttons{
+
+  .buttons {
     max-width: 100%;
     display: flex;
     flex-direction: column;
@@ -88,7 +95,7 @@ label{
     margin-top: 35px;
   }
 
-  .input-checkbox{
+  .input-checkbox {
     display: flex;
     justify-content: space-between;
     align-items: center;
