@@ -1,6 +1,10 @@
 @media (min-width:601px) {
-   .App {
+  body {
+    margin: 0;
     background: url("../public/background.png");
+  }
+
+  .App {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,15 +15,22 @@
     display: flex;
     gap: 60px;
   }
-} 
+}
 
 @media (max-width:600px) {
-  .App{
+  body {
+    margin: 0;
+    background: url("../public/background.png");
+  }
+
+  .App {
+    background: url("../public/background.png");
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .navigation{
+
+  .navigation {
     display: flex;
     gap: 40px;
   }

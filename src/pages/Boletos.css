@@ -1,74 +1,89 @@
-body {
-  margin: 0;
-  background: url("../../public/background.png");
-  background-size: auto;
-}
+@media (min-width:601px) {
+  body {
+    margin: 0;
+    background: url("../../public/background.png");
+  }
 
-header {
-  display: flex;
-  justify-content: center;
-}
+  header {
+    display: flex;
+    justify-content: center;
+  }
 
-.logo {
-  height: 80px;
-}
+  .logo {
+    height: 120px;
+  }
 
-.main {
-  margin: 20px;
-  display: flex;
-  justify-content: left;
-  text-align: left;
-  flex-wrap: wrap;
-}
-
-.label {
-  text-align: center;
-  font-family: 'Quicksand', sans-serif;
-}
-
-.common-text {
-  color: white;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 15px;
-  background-color: rgba(0, 0, 0, 0.521);
-  width: fit-content;
-}
-
-.inputs {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.input-checkbox {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 40%;
-  margin-left: 22px;
-}
-
-label {
-  color: white;
-}
-
-.text-box {
-  margin-left: 20px;
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 35px;
-}
-
-@media (max-width: 992px) {
   .main {
+    margin: 20px;
+    display: flex;
+    justify-content: left;
+    text-align: left;
+  }
+
+  .label {
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  .common-text {
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    background-color: rgba(0, 0, 0, 0.521);
+    width: fit-content;
+  }
+
+  .inputs {
     display: flex;
     flex-direction: column;
+    width: 100%;
+  }
+
+  .input-checkbox {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    width: 40%;
+    margin-left: 22px;
+  }
+
+  label {
+    color: white;
+  }
+
+  .text-box {
+    margin-left: 20px;
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 35px;
+  }
+}
+
+@media (max-width:600px) {
+  body {
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+  }
+
+  .Boletos {
+    padding: 4px;
+    background: url("../../public/background.png");
+    background-size: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    place-items: center;
+  }
+
+  header {
+    display: flex;
+    justify-content: center;
   }
 
   .logo {
@@ -76,29 +91,24 @@ label {
   }
 
   .label {
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
     font-size: 20px;
   }
 
-  .inputs {
-    display: flex;
-    flex-direction: column;
+  .input {
+    width: 70%;
+  }
+
+  .centralizacao-financeira {
     width: 100%;
-    margin-left: 20px;
   }
 
   .buttons {
-    max-width: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 35px;
-  }
-
-  .input-checkbox {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
+    gap: 10px;
+    margin-top: 20px;
   }
 }

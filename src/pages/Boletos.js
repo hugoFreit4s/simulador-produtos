@@ -41,7 +41,7 @@ function Boletos() {
         setFormData((prevData) => ({
             ...prevData,
             [field1]: value,
-            [field2]: !value,
+            [field2]: value ? false : prevData[field2],
         }));
     };
 
@@ -54,24 +54,24 @@ function Boletos() {
                 <header>
                     <img className="logo" alt='' src="logo.png" />
                 </header>
-                <div className="centralizacao-financeira-1">
+                <div className="centralizacao-financeira">
                     <h1 className="label" style={{ color: 'white' }}>(1) Centralização Financeira</h1>
 
-                    <InputCurrency value={formData.saldoMedio} onChange={(e) => handleInputChange('saldoMedio', e.target.value)} placeholder={'Insira aqui!'} title={'(A) Saldo Médio'} />
-                    <InputCurrency value={formData.percentageSaldoMedio} onChange={(e) => handleInputChange('percentageSaldoMedio', e.target.value)} placeholder={'Insira aqui!'} title={'(B) % Sobre Saldo Médio'} />
-                    <InputCurrency value={formData.taxaCDI} onChange={(e) => handleInputChange('taxaCDI', e.target.value)} placeholder={'Insira aqui!'} title={'(C) Taxa CDI (a.m)'} />
-                    <InputCurrency value={formData.percentageCetralizacao} onChange={(e) => handleInputChange('percentageCetralizacao', e.target.value)} placeholder={'Insira aqui!'} title={'(D) % Centralização'} />
+                    <InputCurrency className="input" value={formData.saldoMedio} onChange={(e) => handleInputChange('saldoMedio', e.target.value)} placeholder={'Insira aqui!'} title={'(A) Saldo Médio'} />
+                    <InputCurrency className="input" value={formData.percentageSaldoMedio} onChange={(e) => handleInputChange('percentageSaldoMedio', e.target.value)} placeholder={'Insira aqui!'} title={'(B) % Sobre Saldo Médio'} />
+                    <InputCurrency className="input" value={formData.taxaCDI} onChange={(e) => handleInputChange('taxaCDI', e.target.value)} placeholder={'Insira aqui!'} title={'(C) Taxa CDI (a.m)'} />
+                    <InputCurrency className="input" value={formData.percentageCetralizacao} onChange={(e) => handleInputChange('percentageCetralizacao', e.target.value)} placeholder={'Insira aqui!'} title={'(D) % Centralização'} />
                     <div className="text-box">
                         <p style={{ color: 'white' }}>(=) Receita Estimada</p>
                     </div>
                 </div>
 
-                <div className="centralizacao-financeira-2">
+                <div className="centralizacao-financeira">
                     <h1 className="label" style={{ color: 'white' }}>(2) Centralização Financeira</h1>
 
-                    <InputCurrency value={formData.diasFloat} onChange={(e) => handleInputChange('diasFloat', e.target.value)} placeholder={'Insira aqui!'} title={'(A) Dias de Float'} />
-                    <InputCurrency value={formData.CDIauferido1Dia} onChange={(e) => handleInputChange('CDIauferido1Dia', e.target.value)} placeholder={'Insira aqui!'} title={'(B) Taxa CDI auferida por 1 dia'} />
-                    <InputCurrency value={formData.percentageCentralizacao2} onChange={(e) => handleInputChange('percentageCentralizacao2', e.target.value)} placeholder={'Insira aqui!'} title={'(C) % Centralização'} />
+                    <InputCurrency className="input" value={formData.diasFloat} onChange={(e) => handleInputChange('diasFloat', e.target.value)} placeholder={'Insira aqui!'} title={'(A) Dias de Float'} />
+                    <InputCurrency className="input" value={formData.CDIauferido1Dia} onChange={(e) => handleInputChange('CDIauferido1Dia', e.target.value)} placeholder={'Insira aqui!'} title={'(B) Taxa CDI auferida por 1 dia'} />
+                    <InputCurrency className="input" value={formData.percentageCentralizacao2} onChange={(e) => handleInputChange('percentageCentralizacao2', e.target.value)} placeholder={'Insira aqui!'} title={'(C) % Centralização'} />
 
                     <div className="text-box">
                         <p className="common-text" style={{ color: 'white' }}>(=) Receita estimada:</p>
@@ -91,8 +91,8 @@ function Boletos() {
                             </div>
                         </div>
                         <div id="inputs-currency" className="inputs-protesto">
-                            <InputCurrency value={formData.diasProtesto} onChange={(e) => handleInputChange('diasProtesto', e.target.value)} placeholder={'Insira aqui!'} title={'Dias de Protesto'} />
-                            <InputCurrency value={formData.tarifaProtesto} onChange={(e) => handleInputChange('tarifaProtesto', e.target.value)} placeholder={'Insira aqui!'} title={'Tarifa Protesto'} />
+                            <InputCurrency className="input" value={formData.diasProtesto} onChange={(e) => handleInputChange('diasProtesto', e.target.value)} placeholder={'Insira aqui!'} title={'Dias de Protesto'} />
+                            <InputCurrency className="input" value={formData.tarifaProtesto} onChange={(e) => handleInputChange('tarifaProtesto', e.target.value)} placeholder={'Insira aqui!'} title={'Tarifa Protesto'} />
                         </div>
                         <div className="input-checkbox">
                             <p className="common-text">Emissão 2ª Via:</p>
@@ -102,8 +102,8 @@ function Boletos() {
                             </div>
                         </div>
                         <div id="inputs-currency">
-                            <InputCurrency value={formData.tarifaProrrogacaoTVencido} onChange={(e) => handleInputChange('tarifaProrrogacaoTVencido', e.target.value)} placeholder={'Insira aqui!'} title={'Tarifa Prorrogação de Título Vencido'} />
-                            <InputCurrency value={formData.tarifaManutencaoTVencido} onChange={(e) => handleInputChange('tarifaManutencaoTVencido', e.target.value)} placeholder={'Insira aqui!'} title={'Tarifa Manutenção de Título Vencido'} />
+                            <InputCurrency className="input" value={formData.tarifaProrrogacaoTVencido} onChange={(e) => handleInputChange('tarifaProrrogacaoTVencido', e.target.value)} placeholder={'Insira aqui!'} title={'Tarifa Prorrogação de Título Vencido'} />
+                            <InputCurrency className="input" value={formData.tarifaManutencaoTVencido} onChange={(e) => handleInputChange('tarifaManutencaoTVencido', e.target.value)} placeholder={'Insira aqui!'} title={'Tarifa Manutenção de Título Vencido'} />
                         </div>
                         <div className="input-checkbox">
                             <p className="common-text">Banco Correspondente:</p>
@@ -119,9 +119,6 @@ function Boletos() {
                     <Button endDecorator={<ArrowForwardIos />}>Simular mais produtos</Button>
                 </div>
             </div>
-            <footer>
-
-            </footer>
         </div>
     );
 }
