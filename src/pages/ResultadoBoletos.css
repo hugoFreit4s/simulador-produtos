@@ -1,41 +1,35 @@
-body{
+body {
     margin: 0;
 }
-main{
+
+main {
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Quicksand', sans-serif;
     color: white;
 }
-.custos-por-emissao{
+
+.custos-por-emissao {
     display: flex;
     flex-direction: column;
 }
-.dados{
+
+.cabecalho {
     display: flex;
-    gap: 100px;
+    gap: 60px;
 }
-.cabecalho{
+
+.info-custos{
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
-}
-#subcabecalho{
-    display: flex;
-    gap: 70px;
-}
-.nome{
-    background-color: rgba(0, 0, 0, 0.521);
-    width: fit-content;    
 }
 
-.valores-unitarios{
-    background-color: rgba(0, 0, 0, 0.521);
-    width: fit-content;    
+.name{
+    max-width: 30%;
 }
 
-.valores-totais{
-    background-color: rgba(0, 0, 0, 0.521);
-    width: fit-content;    
+hr{
+    width: 100%;
+    border: 4px solid white;
 }
