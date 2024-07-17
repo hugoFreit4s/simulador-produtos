@@ -8,7 +8,10 @@ import DisableNumberScroll from "../DisableNumberScroll";
 function ResultadoBoleto() {
     DisableNumberScroll();
     const [formData, setFormData] = React.useState({
-        saldoMedio: '',
+        tarifaBaixoDecursodePrazo: '',
+        tarifaBaixaPedidoCedente: '',
+        tarifaLiquidacaoDoTitulo: '',
+        tarifaEntradaTitulo: ''
     });
     const handleInputChange = (field, value) => {
         localStorage.setItem(field, value);
@@ -99,23 +102,20 @@ function ResultadoBoleto() {
                             </tr>
                             <tr>
                                 <td className="table-first-column">Tarifa por baixa por decurso de prazo</td>
-                                <td><Input sx={{'--Input-radius': 0, '--Input-focusedInset': 'var(--any, )',}} value={formData.saldoMedio} className="input" onChange={(e) => handleInputChange('saldoMedio', e.target.value)} placeholder={'Insira aqui!'} variant="outlined" type="number" /></td>
+                                <td><Input sx={{'--Input-radius': 0, '--Input-focusedInset': 'var(--any, )',}} value={formData.tarifaBaixoDecursodePrazo} className="input" onChange={(e) => handleInputChange('tarifaBaixoDecursodePrazo', e.target.value)} placeholder={'Insira aqui!'} variant="outlined" type="number" /></td>
                                 <td>R$XXX,XX</td>
                             </tr>
                             <tr>
                                 <td className="table-first-column">Tarifa na baixa pedido cedente</td>
-                                <td><Input sx={{'--Input-radius': 0}} value={formData.saldoMedio} className="input" onChange={(e) => handleInputChange('saldoMedio', e.target.value)} placeholder={'Insira aqui!'} variant="outlined" type="number" /></td>
-                                <td>R$XXX,XX</td>
+                                <td><Input sx={{'--Input-radius': 0, '--Input-focusedInset': 'var(--any, )',}} value={formData.tarifaBaixaPedidoCedente} className="input" onChange={(e) => handleInputChange('tarifaBaixaPedidoCedente', e.target.value)} placeholder={'Insira aqui!'} variant="outlined" type="number" /></td><td>R$XXX,XX</td>
                             </tr>
                             <tr>
                                 <td className="table-first-column">Tarifa na liquidação do título</td>
-                                <td><Input sx={{'--Input-radius': 0}} value={formData.saldoMedio} className="input" onChange={(e) => handleInputChange('saldoMedio', e.target.value)} placeholder={'Insira aqui!'} variant="outlined" type="number" /></td>
-                                <td>R$XXX,XX</td>
+                                <td><Input sx={{'--Input-radius': 0, '--Input-focusedInset': 'var(--any, )',}} value={formData.tarifaLiquidacaoDoTitulo} className="input" onChange={(e) => handleInputChange('tarifaLiquidacaoDoTitulo', e.target.value)} placeholder={'Insira aqui!'} variant="outlined" type="number" /></td><td>R$XXX,XX</td>
                             </tr>
                             <tr>
                                 <td className="table-first-column">Tarifa na entrada do título</td>
-                                <td><Input sx={{'--Input-radius': 0}} value={formData.saldoMedio} className="input" onChange={(e) => handleInputChange('saldoMedio', e.target.value)} placeholder={'Insira aqui!'} variant="outlined" type="number" /></td>
-                                <td>R$XXX,XX</td>
+                                <td><Input sx={{'--Input-radius': 0, '--Input-focusedInset': 'var(--any, )',}} value={formData.tarifaEntradaTitulo} className="input" onChange={(e) => handleInputChange('tarifaEntradaTitulo', e.target.value)} placeholder={'Insira aqui!'} variant="outlined" type="number" /></td><td>R$XXX,XX</td>
                             </tr>
                         </tbody>
                     </table>
