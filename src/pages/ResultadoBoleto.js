@@ -48,8 +48,35 @@ function ResultadoBoleto() {
                         <p>R$XXX,XX</p>
                     </div>
                 </div>
+                <hr />
                 <div className="ponto-de-equilibrio">
-                    
+                    <h1>Ponto de Equilíbrio</h1>
+
+                    <div className="info-custos">
+                        <p className="name">(+) Receitas Auferidas</p>
+                        <p>R$0,XX</p>
+                        <p>R$XXX,XX</p>
+                    </div>
+                    <div className="info-custos">
+                        <p className="name">(B) Rede Sicoob - X Boletos</p>
+                        <p>R$0,XX</p>
+                        <p>R$XXX,XX</p>
+                    </div>
+                    <div className="info-custos">
+                        <p className="name">(C) Liquidação Própria Coop. - X Boletos</p>
+                        <p>R$0,XX</p>
+                        <p>R$XXX,XX</p>
+                    </div>
+                    <div className="info-custos">
+                        <p className="name">(D) Correspondente Bancário - X Boletos</p>
+                        <p>R$0,XX</p>
+                        <p>R$XXX,XX</p>
+                    </div>
+                    <div className="info-custos">
+                        <p className="name">(E) Tarifa Nova Cobrança - X Boletos</p>
+                        <p>R$0,XX</p>
+                        <p>R$XXX,XX</p>
+                    </div>
                 </div>
             </main>
         </div>
