@@ -14,14 +14,18 @@
 input::placeholder {
     color: white;
     text-align: center;
+    opacity: 30%;
 }
 
 input {
     border: none;
+    text-align: center;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
 }
 
 p {
-    font-size: 15px;
     color: white;
     font-family: 'Quicksand', sans-serif;
     font-size: 15px;
@@ -31,9 +35,9 @@ p {
 
 #info{
     display: flex;
+    height: 35px;
     width: 100%;
     background-color: #636B74;
-    height: 35px;
     border-radius: 6px;
     justify-content: center;
     align-items: center;
