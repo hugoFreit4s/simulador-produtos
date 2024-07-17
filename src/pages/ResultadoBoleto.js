@@ -48,6 +48,9 @@ function ResultadoBoleto() {
                         <p>R$XXX,XX</p>
                     </div>
                 </div>
+                <div className="ponto-de-equilibrio">
+                    
+                </div>
             </main>
         </div>
     )
