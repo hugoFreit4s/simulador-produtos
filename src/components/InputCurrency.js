@@ -1,13 +1,14 @@
-import { Input } from "@mui/joy";
-import './InputCurrency.css'
+import './Displays.css'
 import DisableNumberScroll from "../DisableNumberScroll";
 
 function InputCurrency({ value, onChange, placeholder, title }) {
     DisableNumberScroll();
     return (
-        <div className="main">
-            <p className="input-title">{title}</p>
-            <Input value={value} onChange={onChange} placeholder={placeholder} variant="solid" type="number" />
+        <div id="main">
+            <div id="display">
+                <p>{title}</p>
+                <input value={value} onChange={onChange} placeholder={placeholder} type="number" id="info" />
+            </div>
         </div>
     )
 }
