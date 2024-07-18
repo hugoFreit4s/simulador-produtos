@@ -37,7 +37,7 @@ function Menu() {
 
     return (
         <div className="Boletos">
-            <Link to="/">
+            <Link to="/menu">
                 <i className="fa fa-arrow-circle-left" style={{ fontSize: '40px', cursor: 'pointer', color: 'white', marginLeft: '20px', marginTop: '5px' }}></i>
             </Link>
             <div className="main">

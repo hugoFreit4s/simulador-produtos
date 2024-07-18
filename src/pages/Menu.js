@@ -7,22 +7,38 @@ function Menu() {
         <div className={stl.main}>
             <div className={stl.sidemenu}>
                 <div className={stl.sidemenutext}>
-                    <Link to="/boletos">
+                    <a href="/boletos" className={stl.links}>
                         <p className={stl.sidemenup}>Boletos</p>
-                    </Link>
-                    <p className={stl.sidemenup}>SIPAG</p>
-                    <p className={stl.sidemenup}>Produto X</p>
-                    <p className={stl.sidemenup}>Produto Y</p>
-                    <p className={stl.sidemenup}>Produto Z</p>
+                    </a>
+                    <a href="/boletos" className={stl.links}>
+                        <p className={stl.sidemenup}>SIPAG</p>
+                    </a>
+                    <a href="/boletos" className={stl.links}>
+                        <p className={stl.sidemenup}>Produto X</p>
+                    </a>
+                    <a href="/boletos" className={stl.links}>
+                        <p className={stl.sidemenup}>Produto Y</p>
+                    </a>
+                    <a href="/boletos" className={stl.links}>
+                        <p className={stl.sidemenup}>Produto Z</p>
+                    </a>
                 </div>
                 <div>
                     <img src="logowhitevertical.png" alt='logo' style={{ height: '80px', width: '120px' }} />
                 </div>
             </div>
-            <div className={stl.talktous}>
-                <h1>Fale Conosco</h1>
-                <p>Sugestões, Dúvidas e Suporte: Abra um fluxo direcionado a equipe de BI com o tema “Simulador de Produtos” na Intranet</p>
-                <Button text={'INTRANET'} />
+            <div className={stl.outside}>
+                <div className={stl.talktous}>
+                    <div>
+                        <h1>Fale Conosco</h1>
+                        <p className={stl.outsidetext}>Sugestões, Dúvidas e Suporte: <br />Abra um fluxo direcionado a equipe de BI com o tema “Simulador de Produtos” na Intranet</p>
+                    </div>
+                    <div>
+                        <a href="https://intranet.sicoobvaledoaco.com.br/login?r=Lw==" target="_blank">
+                            <Button text={'INTRANET'} />
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     )

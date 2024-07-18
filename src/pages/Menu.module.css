@@ -1,7 +1,7 @@
 .main {
     display: flex;
     height: 100vh;
-    gap: 600px;
+    gap: 200px;
 }
 
 .sidemenu {
@@ -11,7 +11,7 @@
     flex-direction: column;
     justify-content: space-between;
     border-right: 1px solid white;
-    width: 500px;
+    width: 20%;
     height: 100%;
 }
 
@@ -32,6 +32,33 @@
     line-height: 1.7;
 }
 
+.links{
+    text-decoration: none;
+    color: white;
+}
+
+.links:hover{
+    background-color: #004B5C;
+}
+
+.outside{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-top: 120px;
+    margin-right: 80px;
+}
+
 .talktous {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
     width: 70%;
+}
+
+.outsidetext{
+    font-family: 'Roboto Serif', serif;
+    font-size: 25px;
+    text-align: right;
+    width: 100%;
 }
