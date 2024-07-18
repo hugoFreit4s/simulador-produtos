@@ -1,11 +1,11 @@
-import './Displays.css';
+import displayStl from './Displays.module.css';
 
 function DisplayInfo({ title, data }) {
     return (
-        <div id="main">
-            <div id="display">
+        <div className={displayStl.main}>
+            <div className={displayStl.display}>
                 <p>{title}</p>
-                <div id="info">{data}</div>
+                <div className={displayStl.info}>{data}</div>
             </div>
         </div>
     )

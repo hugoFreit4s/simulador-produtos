@@ -24,7 +24,9 @@ function Menu() {
                     </a>
                 </div>
                 <div>
-                    <img src="logowhitevertical.png" alt='logo' style={{ height: '80px', width: '120px' }} />
+                    <a href="/">
+                        <img src="logowhitevertical.png" alt='logo' style={{ height: '80px', width: '120px' }} />
+                    </a>
                 </div>
             </div>
             <div className={stl.outside}>
