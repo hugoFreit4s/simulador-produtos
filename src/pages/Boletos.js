@@ -19,10 +19,20 @@ function Boletos() {
 
     const handleInputChange = (field, value) => {
         localStorage.setItem(field, value);
-        setFormData((prevData) => ({
-            ...prevData,
-            [field]: value,
-        }));
+        setFormData((prevData) => {
+            let newData = {
+                ...prevData,
+                [field]: value,
+            }
+
+            if (field == 'saldoMedio') {
+                const saldoMedioX2 = localStorage.getItem('saldoMedio') * 2;
+                localStorage.setItem("saldoMedioX2", saldoMedioX2);
+                newData["saldoMedioX2"] = saldoMedioX2;
+            }
+
+            return newData;
+        })
     };
 
     return (
@@ -49,7 +59,7 @@ function Boletos() {
                 <div>
                     <DisplayInfo title={'A.4) % Direcionadores para precificação do Funding'} data={100} />
                     <DisplayInfo title={'(I) % Centralização Financeira'} data={100} />
-                    <DisplayInfo title={'(II) % Saldo médio'} data={0} />
+                    <InputCurrency className="input" value={formData.saldoMedio} onChange={(e) => handleInputChange('saldoMedio', e.target.value)} placeholder={'Insira aqui!'} title={'(II) Saldo médio'} />
                     <DisplayInfo title={'(III) Taxa (%) CDI no ano (a.a)'} data={13.75} />
                     <InputCurrency className="input" value={formData.diasFloat} onChange={(e) => handleInputChange('diasFloat', e.target.value)} placeholder={'Insira aqui!'} title={'Dias de float'} />
                 </div>
