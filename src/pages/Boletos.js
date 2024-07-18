@@ -11,7 +11,7 @@ import DisplayInfo from '../components/DisplayInfo';
 
 import DisableNumberScroll from '../DisableNumberScroll';
 
-function Boletos() {
+function Menu() {
     DisableNumberScroll();
     const [formData, setFormData] = React.useState({
         saldoMedio: '',
@@ -25,7 +25,7 @@ function Boletos() {
                 [field]: value,
             }
 
-            if (field == 'saldoMedio') {
+            if (field === 'saldoMedio') {
                 const saldoMedioX2 = localStorage.getItem('saldoMedio') * 2;
                 localStorage.setItem("saldoMedioX2", saldoMedioX2);
                 newData["saldoMedioX2"] = saldoMedioX2;
@@ -59,7 +59,7 @@ function Boletos() {
                 <div>
                     <DisplayInfo title={'A.4) % Direcionadores para precificação do Funding'} data={100} />
                     <DisplayInfo title={'(I) % Centralização Financeira'} data={100} />
-                    <InputCurrency className="input" value={formData.saldoMedio} onChange={(e) => handleInputChange('saldoMedio', e.target.value)} placeholder={'Insira aqui!'} title={'(II) Saldo médio'} />
+                    <DisplayInfo title={'% de saldo médio'} data={0} />
                     <DisplayInfo title={'(III) Taxa (%) CDI no ano (a.a)'} data={13.75} />
                     <InputCurrency className="input" value={formData.diasFloat} onChange={(e) => handleInputChange('diasFloat', e.target.value)} placeholder={'Insira aqui!'} title={'Dias de float'} />
                 </div>
@@ -74,7 +74,9 @@ function Boletos() {
                 </Link>
             </div>
         </div>
+
+
     );
 }
 
-export default Boletos;
+export default Menu;

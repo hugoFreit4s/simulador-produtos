@@ -1,22 +1,26 @@
+import './fonts/fonts.css';
+import styles from './App.module.css';
+
 import React from 'react';
-import './App.css';
 import { Link } from 'react-router-dom';
-import Button from '@mui/joy/Button';
+import Button from './components/Button';
 
 function App() {
   return (
-    <div className="App">
-      <img src='logo.png' style={{ height: '100px', width: '250px' }} />
-      <div className="main">
-        <div className="navigation">
-          <Link to="/boletos">
-            <Button className="btn-navegacao" size="lg" variant="soft">Boletos</Button>
-          </Link>
-          <Link to="/produtos">
-            <Button className="btn-navegacao" size="lg" variant="soft">Produtos</Button>
+    <div className={styles.App}>
+      <div className={styles.main}>
+        <h1 className={styles.h1}>Simulador de Produtos</h1>
+        <p className={styles.homepagetxt}>Uma solução simples. <br />Uma solução Sicoob Vale do Aço.</p>
+        <img src='logowhitevertical.png' alt='logo' style={{ height: '80px', width: '120px' }} />
+        <div className={styles.navigation}>
+          <Link to="/menu">
+            <Button text={'SIMULAR'} />
           </Link>
         </div>
       </div>
+      <footer>
+        Sicoob Vale do Aço ®
+      </footer>
     </div>
   );
 }
