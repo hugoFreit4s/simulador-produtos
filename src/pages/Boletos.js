@@ -14,7 +14,6 @@ import DisableNumberScroll from '../DisableNumberScroll';
 function Menu() {
     DisableNumberScroll();
     const [formData, setFormData] = React.useState({
-        saldoMedio: '',
     });
 
     const handleInputChange = (field, value) => {

@@ -88,6 +88,12 @@
         justify-content: center;
         align-items: end;
     }
+
+    .btn {
+        display: flex;
+        justify-content: center;
+        margin-top: 80px;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
