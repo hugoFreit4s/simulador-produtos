@@ -1,4 +1,107 @@
-.main {
+.hidden {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .main {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidemenu {
+        display: none;
+    }
+
+    .links {
+        text-decoration: none;
+        color: white;
+    }
+
+    .outside {
+        display: flex;
+        justify-content: center;
+    }
+
+    .talktous {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 30px;
+    }
+
+    .outsidetext {
+        font-family: 'Roboto Serif', serif;
+        font-size: 20px;
+        width: 100%;
+    }
+
+    .logofooter {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: end;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .main {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidemenu {
+        display: flex;
+        justify-content: center;
+    }
+
+    .sidemenutext {
+        font-family: 'Roboto Serif', serif;
+        display: flex;
+        font-size: 13px;
+        gap: 10px;
+    }
+
+    .links {
+        text-decoration: none;
+        color: white;
+    }
+
+    .logomenu {
+        display: none;
+    }
+
+    .outside {
+        display: flex;
+        justify-content: center;
+    }
+
+    .talktous {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 30px;
+    }
+
+    .outsidetext {
+        font-family: 'Roboto Serif', serif;
+        font-size: 20px;
+        width: 100%;
+    }
+
+    .logofooter {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: end;
+    }
+}
+
+
+
+
+/* .main {
     display: flex;
     height: 100vh;
     gap: 200px;
@@ -32,16 +135,16 @@
     line-height: 1.7;
 }
 
-.links{
+.links {
     text-decoration: none;
     color: white;
 }
 
-.links:hover{
+.links:hover {
     background-color: #004B5C;
 }
 
-.outside{
+.outside {
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -56,9 +159,9 @@
     width: 70%;
 }
 
-.outsidetext{
+.outsidetext {
     font-family: 'Roboto Serif', serif;
     font-size: 25px;
     text-align: right;
     width: 100%;
-}
+} */

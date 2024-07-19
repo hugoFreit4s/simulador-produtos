@@ -1,10 +1,25 @@
 import Button from "../components/Button";
 import stl from "./Menu.module.css";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
 function Menu() {
+    const [DropdownVisibility, setDropdownVisibility] = useState(false);
+
+    const toggleDropdown = () => {
+        setDropdownVisibility(!DropdownVisibility);
+    }
+
     return (
         <div className={stl.main}>
+            <div className={stl.dropdownmenu}>
+                <div className={stl.dropdownbox}>
+                    <label className={stl.dropdwonlabel} onClick={toggleDropdown}>Produtos</label>
+                    <ul className={`${stl.dropdown} ${!DropdownVisibility ? stl.hidden : ''}`}>
+                        <li>Boletos</li>
+                        <li>SIPAG</li>
+                    </ul>
+                </div>
+            </div>
             <div className={stl.sidemenu}>
                 <div className={stl.sidemenutext}>
                     <a href="/boletos" className={stl.links}>
@@ -42,6 +57,11 @@ function Menu() {
                     </div>
                 </div>
             </div>
+            <footer className={stl.logofooter}>
+                <a href="/">
+                    <img className={stl.logo} src="logowhitevertical.png" alt='logo' style={{ height: '80px', width: '120px' }} />
+                </a>
+            </footer>
         </div>
     )
 }
