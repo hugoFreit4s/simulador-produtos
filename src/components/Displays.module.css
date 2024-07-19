@@ -1,11 +1,31 @@
 .main{
-
+    display: flex;
+    font-family: 'Roboto Serif', serif;
 }
 
 .display{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
 
+.title{
+    width: 80%;
+    text-align: left;
 }
 
 .info{
-    
+    display: flex;
+    width: 80%;
+    background-color: #004B5C;
+    border: 1px solid white;
+    border-radius: 5px;
+    height: 30px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 15px;
 }

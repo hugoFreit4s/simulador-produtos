@@ -4,7 +4,9 @@ function DisplayInfo({ title, data }) {
     return (
         <div className={displayStl.main}>
             <div className={displayStl.display}>
-                <p>{title}</p>
+                <div className={displayStl.title}>
+                    <p>{title}</p>
+                </div>
                 <div className={displayStl.info}>{data}</div>
             </div>
         </div>
