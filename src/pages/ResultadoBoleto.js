@@ -4,6 +4,7 @@ import DisplayInfo from "../components/DisplayInfo";
 import Printer from '../components/Printer';
 import DisableNumberScroll from '../DisableNumberScroll';
 import rBoletoStl from './ResultadoBoleto.module.css';
+import { Link } from 'react-router-dom';
 
 const ResultadoBoleto = () => {
     DisableNumberScroll();
@@ -27,6 +28,9 @@ const ResultadoBoleto = () => {
 
     return (
         <div className={rBoletoStl.ResultadoBoleto}>
+            <Link to="/boletos">
+                <i className="fa fa-arrow-circle-left" style={{ fontSize: '40px', cursor: 'pointer', color: 'white', marginLeft: '20px', marginTop: '5px' }}></i>
+            </Link>
             <div className={rBoletoStl.section}>
                 <DisplayInfo title={'Saldo médio'} data={saldoMedio} />
                 <DisplayInfo title={'Porcentagem sobre saldo médio'} data={'???'} />
