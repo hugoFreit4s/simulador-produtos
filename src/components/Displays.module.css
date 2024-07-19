@@ -1,9 +1,9 @@
-.main{
+.main {
     display: flex;
     font-family: 'Roboto Serif', serif;
 }
 
-.display{
+.display {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -11,12 +11,12 @@
     padding: 5px;
 }
 
-.title{
+.title {
     width: 80%;
     text-align: left;
 }
 
-.info{
+.info {
     display: flex;
     width: 80%;
     background-color: #004B5C;
@@ -28,4 +28,9 @@
     align-items: center;
     color: white;
     font-size: 15px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }

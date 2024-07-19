@@ -37,9 +37,11 @@ function Menu() {
 
     return (
         <div className="Boletos">
-            <Link to="/menu">
-                <i className="fa fa-arrow-circle-left" style={{ fontSize: '40px', cursor: 'pointer', color: 'white', marginLeft: '20px', marginTop: '5px' }}></i>
-            </Link>
+            <div className={boletoStyle.navigation}>
+                <Link to="/menu">
+                    <i className="fa fa-arrow-circle-left" style={{ fontSize: '40px', cursor: 'pointer', color: 'white', marginLeft: '20px', marginTop: '5px' }}></i>
+                </Link>
+            </div>
             <div className={boletoStyle.main}>
                 <h1 style={{ fontFamily: "Rochester, 'cursive'", color: 'white' }}>Boletos</h1>
                 <div className={boletoStyle.data}>

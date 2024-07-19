@@ -1,4 +1,4 @@
-button{
+.btn{
     font-family: 'Roboto Serif', serif;
     color: white;
     border: 1px solid white;
@@ -10,7 +10,8 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+.btn:hover{
     background-color: #7DB61C;
     border: 1px solid #7DB61C;
+    color: #003641;
 }
