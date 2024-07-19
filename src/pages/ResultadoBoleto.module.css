@@ -1,0 +1,11 @@
+.ResultadoBoleto {
+    flex-direction: column;
+    padding: 25px;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    border-radius: 5px;
+}
