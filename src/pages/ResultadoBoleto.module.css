@@ -1,6 +1,8 @@
 .ResultadoBoleto {
+    display: flex;
     flex-direction: column;
     padding: 25px;
+    gap: 40px;
 }
 
 .section {
@@ -8,4 +10,9 @@
     flex-direction: column;
     border: 1px solid white;
     border-radius: 5px;
+    padding-bottom: 30px;
+}
+
+.section h1{
+    text-align: center;
 }

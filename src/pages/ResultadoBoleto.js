@@ -34,22 +34,27 @@ const ResultadoBoleto = () => {
             </Link>
             <div className={rBoletoStl.section}>
                 <h1>1. Centralização Financeira</h1>
-                <DisplayInfo title={'Saldo médio'} data={saldoMedio} />
-                <DisplayInfo title={'Porcentagem sobre saldo médio'} data={'???'} />
-                <DisplayInfo title={'Taxa CDI (a.m.)'} data={'???'} />
-                <DisplayInfo title={'Porcentagem centralização'} data={'???'} />
-                <p><strong>RECEITA ESTIMADA:</strong></p>
+                <DisplayInfo title={'Saldo médio:'} data={saldoMedio} />
+                <DisplayInfo title={'Porcentagem sobre saldo médio:'} data={'???'} />
+                <DisplayInfo title={'Taxa CDI (a.m.):'} data={'???'} />
+                <DisplayInfo title={'Porcentagem centralização:'} data={'???'} />
+                <DisplayInfo title={'Receita Estimada:'} data={'???'} />
             </div>
             <div className={rBoletoStl.section}>
                 <h1>2. Centralização Financeira</h1>
-                <DisplayInfo title={'Dias de Float'} data={diasDeFloat} />
-                <DisplayInfo title={'Taxa CDI auferida por 1 dia'} data={'???'} />
-                <DisplayInfo title={'% Centralização'} data={'???'} />
-                <p><strong>RECEITA ESTIMADA - FLOAT:</strong></p>
+                <DisplayInfo title={'Dias de Float:'} data={diasDeFloat} />
+                <DisplayInfo title={'Taxa CDI auferida por 1 dia:'} data={'???'} />
+                <DisplayInfo title={'% Centralização:'} data={'???'} />
             </div>
             <div className={rBoletoStl.section}>
-            <p><strong>RECEITA TOTAL (1 + 2):</strong></p>
-            <DisplayInfo title={'Quantidade de boletos liquidados:'} data={qtdBoletos} />
+                <h1>Receitas</h1>
+                <DisplayInfo title={'Receita Estimada - Float:'} data={'???'} />
+                <DisplayInfo title={'Receita total (1 + 2):'} data={'???'} />
+                <DisplayInfo title={'Quantidade de boletos liquidados:'} data={bLiquidados} />
+                <DisplayInfo title={'Receita gerada por boleto:'} data={bLiquidados} />
+            </div>
+            <div className={rBoletoStl.section}>
+                
             </div>
             <ReactToPrint
                 trigger={() => <button>Imprimir Saldo Médio</button>}
