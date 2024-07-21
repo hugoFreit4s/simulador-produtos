@@ -43,6 +43,13 @@ const ResultadoBoleto = () => {
             <div className={rBoletoStl.section}>
                 <h1>2. Centralização Financeira</h1>
                 <DisplayInfo title={'Dias de Float'} data={diasDeFloat} />
+                <DisplayInfo title={'Taxa CDI auferida por 1 dia'} data={'???'} />
+                <DisplayInfo title={'% Centralização'} data={'???'} />
+                <p><strong>RECEITA ESTIMADA - FLOAT:</strong></p>
+            </div>
+            <div className={rBoletoStl.section}>
+            <p><strong>RECEITA TOTAL (1 + 2):</strong></p>
+            <DisplayInfo title={'Quantidade de boletos liquidados:'} data={qtdBoletos} />
             </div>
             <ReactToPrint
                 trigger={() => <button>Imprimir Saldo Médio</button>}
