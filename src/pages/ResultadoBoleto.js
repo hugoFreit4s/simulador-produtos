@@ -16,6 +16,7 @@ const ResultadoBoleto = () => {
         style: "currency",
         currency: "BRL",
     });
+    const diasDeFloat = localStorage.getItem('diasFloat');
     const componentRef = useRef();
 
     // const handleCheckboxChange = (field1, field2, value) => {
@@ -32,10 +33,16 @@ const ResultadoBoleto = () => {
                 <i className="fa fa-arrow-circle-left" style={{ fontSize: '40px', cursor: 'pointer', color: 'white', marginLeft: '20px', marginTop: '5px' }}></i>
             </Link>
             <div className={rBoletoStl.section}>
+                <h1>1. Centralização Financeira</h1>
                 <DisplayInfo title={'Saldo médio'} data={saldoMedio} />
                 <DisplayInfo title={'Porcentagem sobre saldo médio'} data={'???'} />
                 <DisplayInfo title={'Taxa CDI (a.m.)'} data={'???'} />
                 <DisplayInfo title={'Porcentagem centralização'} data={'???'} />
+                <p><strong>RECEITA ESTIMADA:</strong></p>
+            </div>
+            <div className={rBoletoStl.section}>
+                <h1>2. Centralização Financeira</h1>
+                <DisplayInfo title={'Dias de Float'} data={diasDeFloat} />
             </div>
             <ReactToPrint
                 trigger={() => <button>Imprimir Saldo Médio</button>}
