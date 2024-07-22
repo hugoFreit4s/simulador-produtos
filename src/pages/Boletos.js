@@ -1,5 +1,5 @@
 import boletoStyle from './Boletos.module.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormContext } from '../contexts/FormContext';
 import Button from '@mui/joy/Button';
@@ -12,6 +12,50 @@ import DisableNumberScroll from '../utils/DisableNumberScroll';
 function Boletos() {
     DisableNumberScroll();
     const { formData, setFormData } = useFormContext();
+    const [error, setError] = useState({
+        percentageTLiquidados: '',
+        percentageTBaixadosPCedente: '',
+        percentageTBaixadosDecurso: ''
+    });
+
+    const validateAndSetField = (field, value) => {
+        const numericValue = Number(value);
+
+        if (numericValue >= 0 && numericValue <= 100) {
+            setError((prevError) => ({
+                ...prevError,
+                [field]: ''
+            }));
+            setFormData((prevData) => ({
+                ...prevData,
+                [field]: numericValue,
+            }));
+        } else {
+            setError((prevError) => ({
+                ...prevError,
+                [field]: 'Valor inválido! Insira um valor entre 0 e 100.'
+            }));
+            setFormData((prevData) => ({
+                ...prevData,
+                [field]: ''
+            }));
+        }
+    };
+
+    const handleBlur = (field, value) => {
+        const numericValue = Number(value);
+
+        if (numericValue < 0 || numericValue > 100) {
+            setFormData((prevData) => ({
+                ...prevData,
+                [field]: ''
+            }));
+            setError((prevError) => ({
+                ...prevError,
+                [field]: 'Valor inválido! Insira um valor entre 0 e 100.'
+            }));
+        }
+    };
 
     const handleInputChange = (field, value) => {
         setFormData((prevData) => ({
@@ -43,10 +87,11 @@ function Boletos() {
                 <h1 style={{ fontFamily: "Rochester, 'cursive'", color: 'white' }}>Boletos</h1>
                 <div className={boletoStyle.data}>
                     <div>
-                        <InputCurrency className="input" value={formData.qtdBoletos} onChange={(e) => handleInputChange('qtdBoletos', e.target.value)} placeholder={'Insira aqui!'} title={'A.1) Quantidade de boletos emitidos mensalmente'} />
+                        <InputCurrency type="number" className="input" value={formData.qtdBoletos} onChange={(e) => handleInputChange('qtdBoletos', e.target.value)} placeholder={'Insira aqui!'} title={'A.1) Quantidade de boletos emitidos mensalmente'} />
                     </div>
                     <div>
-                        <InputCurrency className="input" value={formData.percentageTLiquidados} onChange={(e) => handleInputChange('percentageTLiquidados', e.target.value)} placeholder={'Insira aqui!'} title={'A.2) % dos títulos que são liquidados'} />
+                        <InputCurrency type="number" className="input" value={formData.percentageTLiquidados} onChange={(e) => handleInputChange('percentageTLiquidados', e.target.value)} onBlur={(e) => validateAndSetField('percentageTLiquidados', e.target.value)} placeholder={'Insira aqui!'} title={'A.2) % dos títulos que são liquidados'} />
+                        {error.percentageTLiquidados && <p style={{ color: 'red', fontFamily: "'Roboto Serif', serif", textAlign: 'center' }}>{error.percentageTLiquidados}</p>}
                         <DisplayInfo title={'(I) % da quantidade em rede bancária'} data={43} />
                         <DisplayInfo title={'(II) % da quantidade em rede Sicoob'} data={7} />
                         <DisplayInfo title={'(III) % da quantidade em liquidação própria cooperativa'} data={7} />
@@ -54,17 +99,19 @@ function Boletos() {
                     </div>
                     <div>
                         <DisplayInfo title={'A.3) % dos titulos emitidos que são baixados'} data={20} />
-                        <InputCurrency className="input" value={formData.percentageTBaixadosPCedente} onChange={(e) => handleInputChange('percentageTBaixadosPCedente', e.target.value)} placeholder={'Insira aqui!'} title={'(I) % dos títulos baixados pedido cedente'} />
-                        <InputCurrency className="input" value={formData.percentageTBaixadosDecurso} onChange={(e) => handleInputChange('percentageTBaixadosDecurso', e.target.value)} placeholder={'Insira aqui!'} title={'(II) % dos títulos baixados por decurso de prazo'} />
+                        <InputCurrency type="number" className="input" value={formData.percentageTBaixadosPCedente} onChange={(e) => handleInputChange('percentageTBaixadosPCedente', e.target.value)} onBlur={(e) => validateAndSetField('percentageTBaixadosPCedente', e.target.value)} placeholder={'Insira aqui!'} title={'(I) % dos títulos baixados pedido cedente'} />
+                        {error.percentageTBaixadosPCedente && <p style={{ color: 'red', fontFamily: "'Roboto Serif', serif", textAlign: 'center' }}>{error.percentageTBaixadosPCedente}</p>}
+                        <InputCurrency type="number" className="input" value={formData.percentageTBaixadosDecurso} onChange={(e) => handleInputChange('percentageTBaixadosDecurso', e.target.value)} onBlur={(e) => validateAndSetField('percentageTBaixadosDecurso', e.target.value)} placeholder={'Insira aqui!'} title={'(II) % dos títulos baixados por decurso de prazo'} />
+                        {error.percentageTBaixadosDecurso && <p style={{ color: 'red', fontFamily: "'Roboto Serif', serif", textAlign: 'center' }}>{error.percentageTBaixadosDecurso}</p>}
                     </div>
                     <div>
                         <DisplayInfo title={'A.4) % Direcionadores para precificação do Funding'} data={100} />
                         <DisplayInfo title={'(I) % Centralização Financeira'} data={100} />
                         <DisplayInfo title={'% de saldo médio'} data={0} />
                         <DisplayInfo title={'(III) Taxa (%) CDI no ano (a.a)'} data={13.75} />
-                        <InputCurrency className="input" value={formData.diasFloat} onChange={(e) => handleInputChange('diasFloat', e.target.value)} placeholder={'Insira aqui!'} title={'Dias de float'} />
+                        <InputCurrency type="number" className="input" value={formData.diasFloat} onChange={(e) => handleInputChange('diasFloat', e.target.value)} placeholder={'Insira aqui!'} title={'Dias de float'} />
                     </div>
-                    <InputCurrency className="input" value={formData.ticketMedio} onChange={(e) => handleInputChange('ticketMedio', e.target.value)} placeholder={'Insira aqui!'} title={'Ticket médio da carteira'} />
+                    <InputCurrency type="number" className="input" value={formData.ticketMedio} onChange={(e) => handleInputChange('ticketMedio', e.target.value)} placeholder={'Insira aqui!'} title={'Ticket médio da carteira'} />
                 </div>
             </div>
             <div className={boletoStyle.btns}>

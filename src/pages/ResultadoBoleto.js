@@ -5,27 +5,18 @@ import Printer from '../components/Printer';
 import DisableNumberScroll from '../utils/DisableNumberScroll';
 import rBoletoStl from './ResultadoBoleto.module.css';
 import { Link } from 'react-router-dom';
+import { useFormContext } from '../contexts/FormContext'
 
 const ResultadoBoleto = () => {
+    const { formData } = useFormContext();
     DisableNumberScroll();
-    // const qtdBoletos = parseFloat(localStorage.getItem('qtdBoletos')) || 0;
-    // const percentageTLiquidados = parseFloat(localStorage.getItem('percentageTLiquidados')) || 0;
-    const ticketMedio = parseFloat(localStorage.getItem('ticketMedio')) || 0;
-    const bLiquidados = FormData.bLiquidados;
-    const saldoMedio = (bLiquidados * ticketMedio).toLocaleString('pt-BR', {
+
+    const saldoMedio = (formData.bLiquidados * formData.ticketMedio).toLocaleString('pt-BR', {
         style: "currency",
         currency: "BRL",
     });
     const diasDeFloat = localStorage.getItem('diasFloat');
     const componentRef = useRef();
-
-    // const handleCheckboxChange = (field1, field2, value) => {
-    //     setFormData((prevData) => ({
-    //         ...prevData,
-    //         [field1]: value,
-    //         [field2]: value ? false : prevData[field2],
-    //     }));
-    // };
 
     return (
         <div className={rBoletoStl.ResultadoBoleto}>
@@ -50,11 +41,10 @@ const ResultadoBoleto = () => {
                 <h1>Receitas</h1>
                 <DisplayInfo title={'Receita Estimada - Float:'} data={'???'} />
                 <DisplayInfo title={'Receita total (1 + 2):'} data={'???'} />
-                <DisplayInfo title={'Quantidade de boletos liquidados:'} data={bLiquidados} />
-                <DisplayInfo title={'Receita gerada por boleto:'} data={bLiquidados} />
+                <DisplayInfo title={'Quantidade de boletos liquidados:'} data={formData.bLiquidados || 'Valor inválido'} />
+                <DisplayInfo title={'Receita gerada por boleto:'} data={formData.bLiquidados || 'Valor inválido'} />
             </div>
             <div className={rBoletoStl.section}>
-                
             </div>
             <ReactToPrint
                 trigger={() => <button>Imprimir Saldo Médio</button>}

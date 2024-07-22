@@ -8,31 +8,40 @@ export const useFormContext = () => {
 
 export const FormProvider = ({ children }) => {
     const initialFormData = {
-        qtdBoletos: localStorage.getItem('qtdBoletos') || '',
-        percentageTLiquidados: localStorage.getItem('percentageTLiquidados') || '',
-        percentageTBaixadosPCedente: localStorage.getItem('percentageTBaixadosPCedente') || '',
-        percentageTBaixadosDecurso: localStorage.getItem('percentageTBaixadosDecurso') || '',
-        diasFloat: localStorage.getItem('diasFloat') || '',
-        ticketMedio: localStorage.getItem('ticketMedio') || '',
-        ticketMedioX2: (localStorage.getItem('ticketMedio') || 0) * 2,
+        qtdBoletos: Number(localStorage.getItem('qtdBoletos')) || '',
+        percentageTLiquidados: Number(localStorage.getItem('percentageTLiquidados')) || '',
+        percentageTBaixadosPCedente: Number(localStorage.getItem('percentageTBaixadosPCedente')) || '',
+        percentageTBaixadosDecurso: Number(localStorage.getItem('percentageTBaixadosDecurso')) || '',
+        diasFloat: Number(localStorage.getItem('diasFloat')) || '',
+        ticketMedio: Number(localStorage.getItem('ticketMedio')) || '',
+        bLiquidados: '',
+        saldoMedio: '',
     };
 
     const [formData, setFormData] = useState(initialFormData);
 
+    // Sincroniza o estado do formulário com o localStorage
     useEffect(() => {
         for (const key in formData) {
             localStorage.setItem(key, formData[key]);
         }
     }, [formData]);
 
+    // Calcula e atualiza bLiquidados e saldoMedio com base nas mudanças
     useEffect(() => {
         const bLiquidados = (formData.qtdBoletos * formData.percentageTLiquidados) / 100;
+        const saldoMedio = bLiquidados * formData.ticketMedio;
+
         setFormData((prevData) => ({
             ...prevData,
             bLiquidados,
+            saldoMedio,
         }));
+
+        // Atualiza o localStorage com os valores calculados
         localStorage.setItem('bLiquidados', bLiquidados);
-    }, [formData.percentageTLiquidados]);
+        localStorage.setItem('saldoMedio', saldoMedio);
+    }, [formData.qtdBoletos, formData.percentageTLiquidados, formData.ticketMedio]);
 
     return (
         <FormContext.Provider value={{ formData, setFormData }}>

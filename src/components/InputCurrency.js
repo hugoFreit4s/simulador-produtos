@@ -1,7 +1,7 @@
 import displayStl from './Displays.module.css'
 import DisableNumberScroll from "../utils/DisableNumberScroll";
 
-function InputCurrency({ value, onChange, placeholder, title }) {
+function InputCurrency({ onBlur, value, onChange, placeholder, title, min, max }) {
     DisableNumberScroll();
     return (
         <div className={displayStl.main}>
@@ -9,7 +9,7 @@ function InputCurrency({ value, onChange, placeholder, title }) {
                 <div className={displayStl.title}>
                     <p>{title}</p>
                 </div>
-                <input value={value} onChange={onChange} placeholder={placeholder} type="number" className={displayStl.info} />
+                <input type="number" onBlur={onBlur} min={min} max={max} value={value} onChange={onChange} placeholder={placeholder} className={displayStl.info} />
             </div>
         </div>
     )
