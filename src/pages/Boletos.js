@@ -15,7 +15,8 @@ function Boletos() {
     const [error, setError] = useState({
         percentageTLiquidados: '',
         percentageTBaixadosPCedente: '',
-        percentageTBaixadosDecurso: ''
+        percentageTBaixadosDecurso: '',
+        totalPercentageError: ''
     });
 
     const validateAndSetField = (field, value) => {
@@ -40,21 +41,8 @@ function Boletos() {
                 [field]: ''
             }));
         }
-    };
 
-    const handleBlur = (field, value) => {
-        const numericValue = Number(value);
-
-        if (numericValue < 0 || numericValue > 100) {
-            setFormData((prevData) => ({
-                ...prevData,
-                [field]: ''
-            }));
-            setError((prevError) => ({
-                ...prevError,
-                [field]: 'Valor inválido! Insira um valor entre 0 e 100.'
-            }));
-        }
+        checkTotalPercentage();
     };
 
     const handleInputChange = (field, value) => {
@@ -62,6 +50,24 @@ function Boletos() {
             ...prevData,
             [field]: value,
         }));
+
+        checkTotalPercentage();
+    };
+
+    const checkTotalPercentage = () => {
+        const total = Number(formData.percentageTBaixadosPCedente || 0) + Number(formData.percentageTBaixadosDecurso || 0) + 20; // 20 is the value from DisplayInfo
+
+        if (total !== 100) {
+            setError((prevError) => ({
+                ...prevError,
+                totalPercentageError: 'Soma das porcentagens diferente de 100%'
+            }));
+        } else {
+            setError((prevError) => ({
+                ...prevError,
+                totalPercentageError: ''
+            }));
+        }
     };
 
     useEffect(() => {
@@ -103,6 +109,7 @@ function Boletos() {
                         {error.percentageTBaixadosPCedente && <p style={{ color: 'red', fontFamily: "'Roboto Serif', serif", textAlign: 'center' }}>{error.percentageTBaixadosPCedente}</p>}
                         <InputCurrency type="number" className="input" value={formData.percentageTBaixadosDecurso} onChange={(e) => handleInputChange('percentageTBaixadosDecurso', e.target.value)} onBlur={(e) => validateAndSetField('percentageTBaixadosDecurso', e.target.value)} placeholder={'Insira aqui!'} title={'(II) % dos títulos baixados por decurso de prazo'} />
                         {error.percentageTBaixadosDecurso && <p style={{ color: 'red', fontFamily: "'Roboto Serif', serif", textAlign: 'center' }}>{error.percentageTBaixadosDecurso}</p>}
+                        {error.totalPercentageError && <p style={{ color: 'red', fontFamily: "'Roboto Serif', serif", textAlign: 'center' }}>{error.totalPercentageError}</p>}
                     </div>
                     <div>
                         <DisplayInfo title={'A.4) % Direcionadores para precificação do Funding'} data={100} />

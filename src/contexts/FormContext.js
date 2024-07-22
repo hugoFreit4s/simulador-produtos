@@ -14,20 +14,18 @@ export const FormProvider = ({ children }) => {
         percentageTBaixadosDecurso: Number(localStorage.getItem('percentageTBaixadosDecurso')) || '',
         diasFloat: Number(localStorage.getItem('diasFloat')) || '',
         ticketMedio: Number(localStorage.getItem('ticketMedio')) || '',
-        bLiquidados: '',
-        saldoMedio: '',
+        bLiquidados: Number(localStorage.getItem('bLiquidados')) || '',
+        saldoMedio: Number(localStorage.getItem('saldoMedio')) || '',
     };
 
     const [formData, setFormData] = useState(initialFormData);
 
-    // Sincroniza o estado do formulário com o localStorage
     useEffect(() => {
         for (const key in formData) {
             localStorage.setItem(key, formData[key]);
         }
     }, [formData]);
 
-    // Calcula e atualiza bLiquidados e saldoMedio com base nas mudanças
     useEffect(() => {
         const bLiquidados = (formData.qtdBoletos * formData.percentageTLiquidados) / 100;
         const saldoMedio = bLiquidados * formData.ticketMedio;
@@ -38,7 +36,6 @@ export const FormProvider = ({ children }) => {
             saldoMedio,
         }));
 
-        // Atualiza o localStorage com os valores calculados
         localStorage.setItem('bLiquidados', bLiquidados);
         localStorage.setItem('saldoMedio', saldoMedio);
     }, [formData.qtdBoletos, formData.percentageTLiquidados, formData.ticketMedio]);
