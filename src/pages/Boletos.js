@@ -18,6 +18,7 @@ function Boletos() {
         percentageTBaixadosDecurso: '',
         totalPercentageError: ''
     });
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
     const validateAndSetField = (field, value) => {
         const numericValue = Number(value);
@@ -41,8 +42,6 @@ function Boletos() {
                 [field]: ''
             }));
         }
-
-        checkTotalPercentage();
     };
 
     const handleInputChange = (field, value) => {
@@ -50,25 +49,31 @@ function Boletos() {
             ...prevData,
             [field]: value,
         }));
+    };
+
+    useEffect(() => {
+        const checkTotalPercentage = () => {
+            const total = Number(formData.percentageTBaixadosPCedente || 0) + Number(formData.percentageTBaixadosDecurso || 0) + 20; // 20 is the value from DisplayInfo
+            const allFieldsFilled = [formData.qtdBoletos, formData.percentageTLiquidados, formData.percentageTBaixadosPCedente, formData.percentageTBaixadosDecurso, formData.diasFloat, formData.ticketMedio].every(field => field !== '' && field !== null && field !== undefined);
+            const allValuesValid = [formData.percentageTLiquidados, formData.percentageTBaixadosPCedente, formData.percentageTBaixadosDecurso].every(field => field >= 0 && field <= 100);
+
+            if (total !== 100) {
+                setError((prevError) => ({
+                    ...prevError,
+                    totalPercentageError: 'Soma das porcentagens diferente de 100%'
+                }));
+            } else {
+                setError((prevError) => ({
+                    ...prevError,
+                    totalPercentageError: ''
+                }));
+            }
+
+            setIsButtonDisabled(!(total === 100 && allFieldsFilled && allValuesValid));
+        };
 
         checkTotalPercentage();
-    };
-
-    const checkTotalPercentage = () => {
-        const total = Number(formData.percentageTBaixadosPCedente || 0) + Number(formData.percentageTBaixadosDecurso || 0) + 20; // 20 is the value from DisplayInfo
-
-        if (total !== 100) {
-            setError((prevError) => ({
-                ...prevError,
-                totalPercentageError: 'Soma das porcentagens diferente de 100%'
-            }));
-        } else {
-            setError((prevError) => ({
-                ...prevError,
-                totalPercentageError: ''
-            }));
-        }
-    };
+    }, [formData]); // Adiciona formData como dependência
 
     useEffect(() => {
         const handleUnload = () => {
@@ -122,11 +127,11 @@ function Boletos() {
                 </div>
             </div>
             <div className={boletoStyle.btns}>
-                <Link to="/resultado-boleto">
-                    <Button color="success" startDecorator={<CheckIcon />}>Simular apenas boletos</Button>
+                <Link to={isButtonDisabled ? '#' : '/resultado-boleto'}>
+                    <Button color="success" startDecorator={<CheckIcon />} disabled={isButtonDisabled}>Simular apenas boletos</Button>
                 </Link>
-                <Link to="/menu">
-                    <Button endDecorator={<ArrowForwardIos />}>Simular mais produtos</Button>
+                <Link to={isButtonDisabled ? '#' : '/menu'}>
+                    <Button endDecorator={<ArrowForwardIos />} disabled={isButtonDisabled}>Simular mais produtos</Button>
                 </Link>
             </div>
         </div>
