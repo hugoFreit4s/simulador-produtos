@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import ReactToPrint from 'react-to-print';
 import DisplayInfo from "../components/DisplayInfo";
 import Printer from '../components/Printer';
@@ -6,9 +6,10 @@ import DisableNumberScroll from '../utils/DisableNumberScroll';
 import rBoletoStl from './ResultadoBoleto.module.css';
 import { Link } from 'react-router-dom';
 import { useFormContext } from '../contexts/FormContext'
+import InputCurrency from '../components/InputCurrency';
 
 const ResultadoBoleto = () => {
-    const { formData } = useFormContext();
+    const { formData, setFormData } = useFormContext();
     DisableNumberScroll();
 
     const saldoMedio = (formData.bLiquidados * formData.ticketMedio).toLocaleString('pt-BR', {
@@ -17,6 +18,28 @@ const ResultadoBoleto = () => {
     });
     const diasDeFloat = localStorage.getItem('diasFloat');
     const componentRef = useRef();
+
+    // Estado para a mensagem de erro
+    const [error, setError] = useState('');
+
+    // Função para validar o valor do novo input
+    const validateAndSetField = (field, value) => {
+        const numericValue = Number(value);
+
+        if (numericValue >= 0 && numericValue <= 100) {
+            setError('');
+            setFormData((prevData) => ({
+                ...prevData,
+                [field]: numericValue,
+            }));
+        } else {
+            setError('Valor inválido! Insira um valor entre 0 e 100.');
+            setFormData((prevData) => ({
+                ...prevData,
+                [field]: '',
+            }));
+        }
+    };
 
     return (
         <div className={rBoletoStl.ResultadoBoleto}>
@@ -45,6 +68,35 @@ const ResultadoBoleto = () => {
                 <DisplayInfo title={'Receita gerada por boleto:'} data={formData.bLiquidados || 'Valor inválido'} />
             </div>
             <div className={rBoletoStl.section}>
+                <div className={rBoletoStl.checkbox}>
+                    <p>Protesto:</p>
+                    <div className={rBoletoStl.subcheckbox}>
+                        <input
+                            type="checkbox"
+                            checked={formData.protesto === 'sim'}
+                            onChange={() => setFormData((prevData) => ({
+                                ...prevData,
+                                protesto: 'sim',
+                                protestoNao: ''
+                            }))}
+                        />
+                        SIM
+                    </div>
+                    <div className={rBoletoStl.subcheckbox}>
+                        <input
+                            type="checkbox"
+                            checked={formData.protesto === 'nao'}
+                            onChange={() => setFormData((prevData) => ({
+                                ...prevData,
+                                protesto: 'nao',
+                                protestoSim: ''
+                            }))}
+                        />
+                        NÃO
+                    </div>
+                </div>
+                <InputCurrency type="number" className="input" value={formData.diasDeProtesto || ''} onChange={(e) => validateAndSetField('diasDeProtesto', e.target.value)} placeholder={'Insira aqui!'} title={'Novo campo (0 a 100)'} />
+                {error && <p style={{ color: 'red', fontFamily: "'Roboto Serif', serif", textAlign: 'center' }}>{error}</p>}
             </div>
             <ReactToPrint
                 trigger={() => <button>Imprimir Saldo Médio</button>}

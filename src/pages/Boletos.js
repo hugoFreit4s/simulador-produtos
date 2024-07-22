@@ -73,7 +73,7 @@ function Boletos() {
         };
 
         checkTotalPercentage();
-    }, [formData]); // Adiciona formData como dependência
+    }, [formData]);
 
     useEffect(() => {
         const handleUnload = () => {

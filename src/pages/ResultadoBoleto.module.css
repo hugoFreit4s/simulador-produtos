@@ -16,3 +16,15 @@
 .section h1{
     text-align: center;
 }
+
+.checkbox{
+    font-family: 'Roboto Serif', serif;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.subcheckbox{
+    display: flex;
+    gap: 5px;
+}

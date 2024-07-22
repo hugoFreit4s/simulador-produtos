@@ -16,6 +16,7 @@ export const FormProvider = ({ children }) => {
         ticketMedio: Number(localStorage.getItem('ticketMedio')) || '',
         bLiquidados: Number(localStorage.getItem('bLiquidados')) || '',
         saldoMedio: Number(localStorage.getItem('saldoMedio')) || '',
+        diasDeProtesto: Number(localStorage.getItem('diasDeProtesto')) || '',
     };
 
     const [formData, setFormData] = useState(initialFormData);
