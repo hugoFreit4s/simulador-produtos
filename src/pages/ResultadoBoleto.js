@@ -1,11 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ReactToPrint from 'react-to-print';
 import DisplayInfo from "../components/DisplayInfo";
 import Printer from '../components/Printer';
 import DisableNumberScroll from '../utils/DisableNumberScroll';
 import rBoletoStl from './ResultadoBoleto.module.css';
 import { Link } from 'react-router-dom';
-import { useFormContext } from '../contexts/FormContext'
+import { useFormContext } from '../contexts/FormContext';
 import InputCurrency from '../components/InputCurrency';
 
 const ResultadoBoleto = () => {
@@ -18,14 +18,17 @@ const ResultadoBoleto = () => {
     });
     const diasDeFloat = localStorage.getItem('diasFloat');
     const componentRef = useRef();
-
-    // Estado para a mensagem de erro
     const [error, setError] = useState('');
 
-    // Função para validar o valor do novo input
+    useEffect(() => {
+        setFormData((prevData) => ({
+            ...prevData,
+            protesto: 'nao',
+        }));
+    }, [setFormData]);
+
     const validateAndSetField = (field, value) => {
         const numericValue = Number(value);
-
         if (numericValue >= 0 && numericValue <= 100) {
             setError('');
             setFormData((prevData) => ({
@@ -38,6 +41,17 @@ const ResultadoBoleto = () => {
                 ...prevData,
                 [field]: '',
             }));
+        }
+    };
+
+    const handleProtestoChange = (value) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            protesto: value,
+        }));
+        if (value === 'nao') {
+            localStorage.setItem('diasDeProtesto', '0');
+            localStorage.setItem('tarifaProtesto', '0');
         }
     };
 
@@ -74,11 +88,7 @@ const ResultadoBoleto = () => {
                         <input
                             type="checkbox"
                             checked={formData.protesto === 'sim'}
-                            onChange={() => setFormData((prevData) => ({
-                                ...prevData,
-                                protesto: 'sim',
-                                protestoNao: ''
-                            }))}
+                            onChange={() => handleProtestoChange('sim')}
                         />
                         SIM
                     </div>
@@ -86,17 +96,33 @@ const ResultadoBoleto = () => {
                         <input
                             type="checkbox"
                             checked={formData.protesto === 'nao'}
-                            onChange={() => setFormData((prevData) => ({
-                                ...prevData,
-                                protesto: 'nao',
-                                protestoSim: ''
-                            }))}
+                            onChange={() => handleProtestoChange('nao')}
                         />
                         NÃO
                     </div>
                 </div>
-                <InputCurrency type="number" className="input" value={formData.diasDeProtesto || ''} onChange={(e) => validateAndSetField('diasDeProtesto', e.target.value)} placeholder={'Insira aqui!'} title={'Novo campo (0 a 100)'} />
+                <InputCurrency
+                    type="number"
+                    className="input"
+                    value={formData.diasDeProtesto || ''}
+                    onChange={(e) => validateAndSetField('diasDeProtesto', e.target.value)}
+                    placeholder={'Insira aqui!'}
+                    title={'Dias de Protesto'}
+                    disabled={formData.protesto === 'nao'}
+                />
                 {error && <p style={{ color: 'red', fontFamily: "'Roboto Serif', serif", textAlign: 'center' }}>{error}</p>}
+                <InputCurrency
+                    type="number"
+                    className="input"
+                    value={formData.tarifaProtesto || ''}
+                    onChange={(e) => setFormData((prevData) => ({
+                        ...prevData,
+                        tarifaProtesto: e.target.value || ''
+                    }))}
+                    placeholder={'Insira aqui!'}
+                    title={'Tarifa Protesto'}
+                    disabled={formData.protesto === 'nao'}
+                />
             </div>
             <ReactToPrint
                 trigger={() => <button>Imprimir Saldo Médio</button>}
