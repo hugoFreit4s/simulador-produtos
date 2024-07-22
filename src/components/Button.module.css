@@ -12,6 +12,6 @@
 
 .btn:hover{
     background-color: #7DB61C;
-    border: 1px solid #7DB61C;
+    border: 1px solid white;
     color: #003641;
 }

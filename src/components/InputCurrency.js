@@ -1,5 +1,5 @@
 import displayStl from './Displays.module.css'
-import DisableNumberScroll from "../DisableNumberScroll";
+import DisableNumberScroll from "../utils/DisableNumberScroll";
 
 function InputCurrency({ value, onChange, placeholder, title }) {
     DisableNumberScroll();

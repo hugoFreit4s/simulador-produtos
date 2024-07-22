@@ -1,38 +1,36 @@
 import boletoStyle from './Boletos.module.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import { useFormContext } from '../contexts/FormContext';
 import Button from '@mui/joy/Button';
 import CheckIcon from '@mui/icons-material/Check';
 import { ArrowForwardIos } from '@mui/icons-material';
-
 import InputCurrency from '../components/InputCurrency';
 import DisplayInfo from '../components/DisplayInfo';
+import DisableNumberScroll from '../utils/DisableNumberScroll';
 
-import DisableNumberScroll from '../DisableNumberScroll';
-
-function Menu() {
+function Boletos() {
     DisableNumberScroll();
-    const [formData, setFormData] = React.useState({
-    });
+    const { formData, setFormData } = useFormContext();
 
     const handleInputChange = (field, value) => {
-        localStorage.setItem(field, value);
-        setFormData((prevData) => {
-            let newData = {
-                ...prevData,
-                [field]: value,
-            }
-
-            if (field === 'saldoMedio') {
-                const saldoMedioX2 = localStorage.getItem('saldoMedio') * 2;
-                localStorage.setItem("saldoMedioX2", saldoMedioX2);
-                newData["saldoMedioX2"] = saldoMedioX2;
-            }
-
-            return newData;
-        })
+        setFormData((prevData) => ({
+            ...prevData,
+            [field]: value,
+        }));
     };
+
+    useEffect(() => {
+        const handleUnload = () => {
+            localStorage.clear();
+        };
+
+        window.addEventListener('beforeunload', handleUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleUnload);
+        };
+    }, []);
 
     return (
         <div className="Boletos">
@@ -56,7 +54,7 @@ function Menu() {
                     </div>
                     <div>
                         <DisplayInfo title={'A.3) % dos titulos emitidos que são baixados'} data={20} />
-                        <InputCurrency className="input" value={formData.qtdBoletos} onChange={(e) => handleInputChange('qtdBoletos', e.target.value)} placeholder={'Insira aqui!'} title={'(I) % dos títulos baixados pedido cedente'} />
+                        <InputCurrency className="input" value={formData.percentageTBaixadosPCedente} onChange={(e) => handleInputChange('percentageTBaixadosPCedente', e.target.value)} placeholder={'Insira aqui!'} title={'(I) % dos títulos baixados pedido cedente'} />
                         <InputCurrency className="input" value={formData.percentageTBaixadosDecurso} onChange={(e) => handleInputChange('percentageTBaixadosDecurso', e.target.value)} placeholder={'Insira aqui!'} title={'(II) % dos títulos baixados por decurso de prazo'} />
                     </div>
                     <div>
@@ -77,10 +75,8 @@ function Menu() {
                     <Button endDecorator={<ArrowForwardIos />}>Simular mais produtos</Button>
                 </Link>
             </div>
-        </div >
-
-
+        </div>
     );
 }
 
-export default Menu;
+export default Boletos;

@@ -7,11 +7,6 @@ class Printer extends React.Component {
 
         return (
             <div>
-                <table>
-                    <thead>
-                        <th style={{color: 'black'}}>Oi</th>
-                    </thead>
-                </table>
                 <h1 style={{color: 'black'}}>Saldo Médio</h1>
                 <p style={{color: 'black'}}>{saldoMedio}</p>
             </div>
