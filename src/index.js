@@ -22,8 +22,8 @@ root.render(
         <Route path="/boletos" element={<Boletos />} />
         <Route path="/produtos" element={<Produtos />} />
         <Route path="/lista-produtos" element={<ListaProdutos />} />
-        <Route path="/resultado-boleto" element={<PrivateRoute element={<ResultadoBoleto />} />} />
         <Route path="/menu" element={<Menu />} />
+        <Route path="/resultado-boleto" element={<PrivateRoute element={<ResultadoBoleto />} />} />
       </Routes>
     </Router>
   </FormProvider>

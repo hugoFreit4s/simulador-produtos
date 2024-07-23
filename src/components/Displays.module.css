@@ -38,3 +38,7 @@ input::-webkit-inner-spin-button {
 input{
     font-family: 'Roboto Serif', serif;
 }
+
+.disabled{
+    pointer-events: none;
+}

@@ -20,10 +20,13 @@ const ResultadoBoleto = () => {
     const componentRef = useRef();
     const [error, setError] = useState('');
 
+    const diasDeProtestoRef = useRef(null);
+    const tarifaProtestoRef = useRef(null);
+
     useEffect(() => {
         setFormData((prevData) => ({
             ...prevData,
-            protesto: 'nao',
+            protesto: 'sim',
         }));
     }, [setFormData]);
 
@@ -52,6 +55,21 @@ const ResultadoBoleto = () => {
         if (value === 'nao') {
             localStorage.setItem('diasDeProtesto', '0');
             localStorage.setItem('tarifaProtesto', '0');
+            setFormData((prevData) => ({
+                ...prevData,
+                diasDeProtesto: '0',
+                tarifaProtesto: '0',
+            }));
+
+            if (diasDeProtestoRef.current && tarifaProtestoRef.current) {
+                diasDeProtestoRef.current.disabled = true;
+                tarifaProtestoRef.current.disabled = true;
+            }
+        } else {
+            if (diasDeProtestoRef.current && tarifaProtestoRef.current) {
+                diasDeProtestoRef.current.disabled = false;
+                tarifaProtestoRef.current.disabled = false;
+            }
         }
     };
 
@@ -83,12 +101,13 @@ const ResultadoBoleto = () => {
             </div>
             <div className={rBoletoStl.section}>
                 <div className={rBoletoStl.checkbox}>
-                    <p>Protesto:</p>
+                    <p className='protesto'>Protesto:</p>
                     <div className={rBoletoStl.subcheckbox}>
                         <input
                             type="checkbox"
                             checked={formData.protesto === 'sim'}
                             onChange={() => handleProtestoChange('sim')}
+                            style={{ cursor: 'pointer' }}
                         />
                         SIM
                     </div>
@@ -97,23 +116,23 @@ const ResultadoBoleto = () => {
                             type="checkbox"
                             checked={formData.protesto === 'nao'}
                             onChange={() => handleProtestoChange('nao')}
+                            style={{ cursor: 'pointer' }}
                         />
                         NÃO
                     </div>
                 </div>
                 <InputCurrency
+                    ref={diasDeProtestoRef}
                     type="number"
-                    className="input"
                     value={formData.diasDeProtesto || ''}
                     onChange={(e) => validateAndSetField('diasDeProtesto', e.target.value)}
                     placeholder={'Insira aqui!'}
                     title={'Dias de Protesto'}
-                    disabled={formData.protesto === 'nao'}
                 />
                 {error && <p style={{ color: 'red', fontFamily: "'Roboto Serif', serif", textAlign: 'center' }}>{error}</p>}
                 <InputCurrency
+                    ref={tarifaProtestoRef}
                     type="number"
-                    className="input"
                     value={formData.tarifaProtesto || ''}
                     onChange={(e) => setFormData((prevData) => ({
                         ...prevData,
@@ -121,18 +140,19 @@ const ResultadoBoleto = () => {
                     }))}
                     placeholder={'Insira aqui!'}
                     title={'Tarifa Protesto'}
-                    disabled={formData.protesto === 'nao'}
                 />
             </div>
-            <ReactToPrint
-                trigger={() => <button>Imprimir Saldo Médio</button>}
-                content={() => {
-                    console.log("Rendering for print:", componentRef.current);
-                    return componentRef.current;
-                }} />
+            <div className="print">
+                <ReactToPrint
+                    trigger={() => <button>Imprimir Saldo Médio</button>}
+                    content={() => {
+                        console.log("Rendering for print:", componentRef.current);
+                        return componentRef.current;
+                    }} />
 
-            <div style={{ display: 'none' }}>
-                <Printer ref={componentRef} saldoMedio={saldoMedio} />
+                <div style={{ display: 'none' }}>
+                    <Printer ref={componentRef} saldoMedio={saldoMedio} />
+                </div>
             </div>
         </div>
     );
