@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Produtos - README</title>
-</head>
 <body>
     <h1>Simulador de Produtos</h1>
     <p>Este projeto foi desenvolvido em React para simular alguns produtos de uma financeira, como boletos, seguros e máquinas de cartão de crédito.</p>
@@ -37,7 +30,6 @@ npm install</code></pre>
     <p>Para iniciar a aplicação em modo de desenvolvimento:
         <pre><code>npm start</code></pre>
     </p>
-    <p>Acesse <code>http://localhost:3000</code> no seu navegador.</p>
     <h3>Scripts Disponíveis</h3>
     <ul>
         <li><code>npm start</code>: Inicia a aplicação em modo de desenvolvimento.</li>
@@ -78,7 +70,6 @@ npm install</code></pre>
     <p>To start the application in development mode:
         <pre><code>npm start</code></pre>
     </p>
-    <p>Open <code>http://localhost:3000</code> in your browser.</p>
     <h3>Available Scripts</h3>
     <ul>
         <li><code>npm start</code>: Starts the application in development mode.</li>
