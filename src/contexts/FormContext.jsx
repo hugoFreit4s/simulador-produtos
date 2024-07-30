@@ -14,7 +14,7 @@ export const FormProvider = ({ children }) => {
         percentageRSicoob: Number(localStorage.getItem('percentageRedeSICOOB')) || '',
         percentageLPropriaCoop: Number(localStorage.getItem('percentageLiquidacaoPropriaCoop')) || '',
         percentageLCBancario: Number(localStorage.getItem('percentageLiquidacaoCorrespBancario')) || '',
-        percentageTEBaixados: Number(localStorage.getItem('percentageTitulosEmitidosBaixados')) || '',
+        percentageTEBaixados: Number(localStorage.getItem('percentageTitulosEmitidosBaixados')) || 0,
         percentageTBaixadosPCedente: Number(localStorage.getItem('percentageTBaixadosPCedente')) || '',
         percentageTBaixadosDecurso: Number(localStorage.getItem('percentageTBaixadosDecurso')) || '',
         diasFloat: Number(localStorage.getItem('diasFloat')) || '',

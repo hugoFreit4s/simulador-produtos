@@ -29,6 +29,7 @@ function Boletos() {
         percentageTBaixadosDecurso: '',
         totalPercentageMessage: ''
     });
+
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
     const validateAndSetField = (field, value) => {
@@ -67,30 +68,35 @@ function Boletos() {
     };
 
     const checkTotalPercentage = useCallback(() => {
-        const total = Number(formData.percentageTBaixadosPCedente || 0) + Number(formData.percentageTBaixadosDecurso || 0);
-        const reference = Number(localStorage.getItem('percentageTitulosEmitidosBaixados'));
-        const allFieldsFilled = [formData.percentageTEBaixados, formData.qtdBoletos, formData.percentageTLiquidados, formData.percentageTBaixadosPCedente, formData.percentageTBaixadosDecurso, formData.diasFloat, formData.ticketMedio].every(field => field !== '' && field !== null && field !== undefined);
-        const allValuesValid = [formData.percentageTEBaixados, formData.percentageTLiquidados, formData.percentageTBaixadosPCedente, formData.percentageTBaixadosDecurso].every(field => field >= 0 && field <= 100);
+    const total = Number(formData.percentageTBaixadosPCedente || 0) + Number(formData.percentageTBaixadosDecurso || 0);
+    const reference = Number(localStorage.getItem('percentageTitulosEmitidosBaixados'));
+    const allFieldsFilled = [formData.percentageTEBaixados, formData.qtdBoletos, formData.percentageTLiquidados, formData.percentageTBaixadosPCedente, formData.percentageTBaixadosDecurso, formData.diasFloat, formData.ticketMedio]
+        .every(field => field !== '' && field !== null && field !== undefined);
+    const allValuesValid = [formData.percentageTEBaixados, formData.percentageTLiquidados, formData.percentageTBaixadosPCedente, formData.percentageTBaixadosDecurso]
+        .every(field => Number(field) >= 0 && Number(field) <= 100);
 
-        if (total < reference) {
-            setError((prevError) => ({
-                ...prevError,
-                totalPercentageMessage: 'A soma dos valores está menor do que o exigido. (I + II = Títulos emitidos que são baixados)',
-            }));
-        } else if (total > reference) {
-            setError((prevError) => ({
-                ...prevError,
-                totalPercentageMessage: 'A soma dos valores está maior do que o exigido. (I + II = Títulos emitidos que são baixados)',
-            }));
-        } else {
-            setError((prevError) => ({
-                ...prevError,
-                totalPercentageMessage: 'Soma ok!',
-            }));
-        }
+    if (total < reference) {
+        setError((prevError) => ({
+            ...prevError,
+            totalPercentageMessage: 'A soma dos valores está menor do que o exigido. (I + II = Títulos emitidos que são baixados)',
+        }));
+    } else if (total > reference) {
+        setError((prevError) => ({
+            ...prevError,
+            totalPercentageMessage: 'A soma dos valores está maior do que o exigido. (I + II = Títulos emitidos que são baixados)',
+        }));
+    } else {
+        setError((prevError) => ({
+            ...prevError,
+            totalPercentageMessage: 'Soma ok!',
+        }));
+    }
 
-        setIsButtonDisabled(!(total === 100 && allFieldsFilled && allValuesValid));
-    }, [formData]);
+    // Habilitar o botão se todas as condições forem atendidas
+    const shouldEnableButton = total === reference && allFieldsFilled && allValuesValid;
+    setIsButtonDisabled(!shouldEnableButton);
+}, [formData]);
+
 
     useEffect(() => {
         checkTotalPercentage();

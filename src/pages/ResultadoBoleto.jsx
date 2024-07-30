@@ -298,7 +298,7 @@ const ResultadoBoleto = () => {
 
             <div className={rBoletoStl.section}>
                 <h1>(I) Custos Compensação</h1>
-                <DisplayInfo title={`A - Rede Bancária`} data={`$`} />
+                <DisplayInfo title={`A) Rede Bancária - ${formData.bRBancaria} Boletos`} data={`$`} />
             </div>
 
             <div className="print">
