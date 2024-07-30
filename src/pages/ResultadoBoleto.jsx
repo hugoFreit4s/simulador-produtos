@@ -153,8 +153,7 @@ const ResultadoBoleto = () => {
             <div className={rBoletoStl.section}>
                 <h1>2. Centralização Financeira</h1>
                 <DisplayInfo title={'Dias de Float:'} data={diasDeFloat} />
-                <DisplayInfo title={'Taxa CDI auferida por 1 dia:'} data={'???'} />
-                <DisplayInfo title={'% Centralização:'} data={'???'} />
+                <DisplayInfo title={`Taxa CDI auferida por ${diasDeFloat} dia(s)`} data={'???'} />
             </div>
             <div className={rBoletoStl.section}>
                 <h1>Receitas</h1>
@@ -299,6 +298,7 @@ const ResultadoBoleto = () => {
 
             <div className={rBoletoStl.section}>
                 <h1>(I) Custos Compensação</h1>
+                <DisplayInfo title={`A - Rede Bancária`} data={`$`} />
             </div>
 
             <div className="print">
