@@ -92,7 +92,6 @@ function Boletos() {
         }));
     }
 
-    // Habilitar o botão se todas as condições forem atendidas
     const shouldEnableButton = total === reference && allFieldsFilled && allValuesValid;
     setIsButtonDisabled(!shouldEnableButton);
 }, [formData]);

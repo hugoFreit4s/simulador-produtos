@@ -38,7 +38,7 @@ export const FormProvider = ({ children }) => {
         const bRBancaria = (formData.bLiquidados * formData.percentageRBancaria) / 100;
         const bRSicoob = (formData.bLiquidados * formData.percentageRSicoob) / 100;
         const bLPropriaCoop = (formData.bLiquidados * formData.percentageLPropriaCoop) / 100;
-        const bLiquidacaoCorrespBancario = (formData.bLiquidados * formData.percentageLCBancario) / 100;
+        const bCorrespBancario = (formData.bLiquidados * formData.percentageLCBancario) / 100;
         const bPedidoCedente = (formData.bLiquidados * formData.percentageTBaixadosPCedente) / 100;
         const bDecursoDePrazo = (formData.bLiquidados * formData.percentageTBaixadosDecurso) / 100;
 
@@ -49,7 +49,7 @@ export const FormProvider = ({ children }) => {
             bRBancaria,
             bRSicoob,
             bLPropriaCoop,
-            bLiquidacaoCorrespBancario,
+            bCorrespBancario,
             bPedidoCedente,
             bDecursoDePrazo,
         }));
@@ -59,7 +59,7 @@ export const FormProvider = ({ children }) => {
         localStorage.setItem('bRBancaria', bRBancaria);
         localStorage.setItem('bRSicoob', bRSicoob);
         localStorage.setItem('bLPropriaCoop', bLPropriaCoop);
-        localStorage.setItem('bLiquidacaoCorrespBancario', bLiquidacaoCorrespBancario);
+        localStorage.setItem('bCorrespBancario', bCorrespBancario);
         localStorage.setItem('bPedidoCedente', bPedidoCedente);
         localStorage.setItem('bDecursoDePrazo', bDecursoDePrazo);
     },
