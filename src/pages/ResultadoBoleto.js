@@ -296,7 +296,7 @@ const ResultadoBoleto = () => {
                 {errors.tarifaEmissao2Via && <p style={{ color: 'red', fontFamily: "'Roboto Serif', serif", textAlign: 'center' }}>{errors.tarifaEmissao2Via}</p>}
             </div>
 
-            
+
             <div className={rBoletoStl.section}>
                 <h1>(I) Custos Compensação</h1>
             </div>
