@@ -7,6 +7,8 @@ import rBoletoStl from './ResultadoBoleto.module.css';
 import { Link } from 'react-router-dom';
 import { useFormContext } from '../contexts/FormContext';
 import InputCurrency from '../components/InputCurrency';
+import CentralizacaoFinanceira, { CentralizacaoFinanceira1, CentralizacaoFinanceira2 } from '../components/ResultadoBoletos/CentralizacaoFinanceira';
+import Receitas from '../components/ResultadoBoletos/Receitas';
 
 const ResultadoBoleto = () => {
     const { formData, setFormData } = useFormContext();
@@ -164,24 +166,13 @@ const ResultadoBoleto = () => {
                 <i className="fa fa-arrow-circle-left" style={{ fontSize: '40px', cursor: 'pointer', color: 'white', marginLeft: '20px', marginTop: '5px' }}></i>
             </Link>
             <div className={rBoletoStl.section}>
-                <h1>1. Centralização Financeira</h1>
-                <DisplayInfo title={'Saldo médio:'} data={saldoMedio} />
-                <DisplayInfo title={'Porcentagem sobre saldo médio:'} data={'???'} />
-                <DisplayInfo title={'Taxa CDI (a.m.):'} data={'???'} />
-                <DisplayInfo title={'Porcentagem centralização:'} data={'???'} />
-                <DisplayInfo title={'Receita Estimada:'} data={'???'} />
+                <CentralizacaoFinanceira1 />
             </div>
             <div className={rBoletoStl.section}>
-                <h1>2. Centralização Financeira</h1>
-                <DisplayInfo title={'Dias de Float:'} data={diasDeFloat} />
-                <DisplayInfo title={`Taxa CDI auferida por ${diasDeFloat} dia(s)`} data={'???'} />
+                <CentralizacaoFinanceira2 />
             </div>
             <div className={rBoletoStl.section}>
-                <h1>Receitas</h1>
-                <DisplayInfo title={'Receita Estimada - Float:'} data={'???'} />
-                <DisplayInfo title={'Receita total (1 + 2):'} data={'???'} />
-                <DisplayInfo title={'Quantidade de boletos liquidados:'} data={formData.bLiquidados || 'Valor inválido'} />
-                <DisplayInfo title={'Receita gerada por boleto:'} data={formData.bLiquidados || 'Valor inválido'} />
+                <Receitas />
             </div>
             <div className={rBoletoStl.section}>
                 <div className={rBoletoStl.checkbox}>
