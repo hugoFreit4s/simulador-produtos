@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import ReactToPrint from 'react-to-print';
-import Printer from '../components/Printer';
+import Printer from '../components/Printer/Printer';
 import DisableNumberScroll from '../utils/DisableNumberScroll';
 import rBoletoStl from './ResultadoBoleto.module.css';
 import { Link } from 'react-router-dom';
