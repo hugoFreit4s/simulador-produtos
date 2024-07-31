@@ -35,7 +35,7 @@ const ResultadoBoleto = () => {
             <Link to="/boletos">
                 <i className="fa fa-arrow-circle-left" style={{ fontSize: '40px', cursor: 'pointer', color: 'white', marginLeft: '20px', marginTop: '5px' }}></i>
             </Link>
-    
+
             <div className={rBoletoStl.section}>
                 <CentralizacaoFinanceira1 />
             </div>

@@ -63,18 +63,18 @@ export const FormProvider = ({ children }) => {
         localStorage.setItem('bPedidoCedente', bPedidoCedente);
         localStorage.setItem('bDecursoDePrazo', bDecursoDePrazo);
     },
-    [formData.bLiquidados,
-    formData.percentageLCBancario,
-    formData.percentageLPropriaCoop,
-    formData.percentageRBancaria,
-    formData.percentageRSicoob,
-    formData.percentageTBaixadosDecurso,
-    formData.percentageTBaixadosPCedente,
-    formData.qtdBoletos,
-    formData.percentageTLiquidados,
-    formData.ticketMedio,
-    formData.bPedidoCedente,
-    formData.bDecursoDePrazo]);
+        [formData.bLiquidados,
+        formData.percentageLCBancario,
+        formData.percentageLPropriaCoop,
+        formData.percentageRBancaria,
+        formData.percentageRSicoob,
+        formData.percentageTBaixadosDecurso,
+        formData.percentageTBaixadosPCedente,
+        formData.qtdBoletos,
+        formData.percentageTLiquidados,
+        formData.ticketMedio,
+        formData.bPedidoCedente,
+        formData.bDecursoDePrazo]);
 
     return (
         <FormContext.Provider value={{ formData, setFormData }}>
