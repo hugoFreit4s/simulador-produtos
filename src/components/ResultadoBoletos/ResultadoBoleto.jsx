@@ -1,14 +1,14 @@
 import React, { useRef, useEffect } from 'react';
 import ReactToPrint from 'react-to-print';
-import Printer from '../components/Printer/Printer';
-import DisableNumberScroll from '../utils/DisableNumberScroll';
+import Printer from '../Printer/Printer';
+import DisableNumberScroll from '../../utils/DisableNumberScroll';
 import rBoletoStl from './ResultadoBoleto.module.css';
 import { Link } from 'react-router-dom';
-import { useFormContext } from '../contexts/FormContext';
-import { CentralizacaoFinanceira1, CentralizacaoFinanceira2 } from '../components/ResultadoBoletos/CentralizacaoFinanceira';
-import Receitas from '../components/ResultadoBoletos/Receitas';
-import Receitas2 from '../components/ResultadoBoletos/Receitas2';
-import TabelaCustosCompensacao from '../components/ResultadoBoletos/TabelaCustosCompensacao';
+import { useFormContext } from '../../contexts/FormContext';
+import { CentralizacaoFinanceira1, CentralizacaoFinanceira2 } from './CentralizacaoFinanceira';
+import Receitas from './Receitas';
+import Receitas2 from './Receitas2';
+import TabelaCustosCompensacao from './TabelaCustosCompensacao';
 
 const ResultadoBoleto = () => {
     const { formData, setFormData } = useFormContext();

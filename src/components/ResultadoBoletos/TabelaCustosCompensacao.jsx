@@ -1,4 +1,5 @@
-import rBoletoStl from '../../pages/ResultadoBoleto.module.css';
+import rBoletoStl from './ResultadoBoleto.module.css';
+import tableccStl from './TabelaCustosCompensacao.module.css'
 import { useFormContext } from '../../contexts/FormContext';
 import custosUnitarios, { CalculoCustosTotais } from './custosUnitarios';
 
@@ -8,7 +9,7 @@ function TabelaCustosCompensacao() {
     return (
         <div className={rBoletoStl.section}>
             <h1>(I) Custos Compensação</h1>
-            <table className={rBoletoStl.sss}>
+            <table className={tableccStl.tableResultBlt}>
                 <thead>
                     <tr>
                         <th>Linhas de Custos</th>
@@ -18,72 +19,72 @@ function TabelaCustosCompensacao() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td className={rBoletoStl.center}>A) Rede Bancária - {formData.bRBancaria} Boletos</td>
-                        <td className={rBoletoStl.center}>{custosUnitarios.RBancaria.toLocaleString('pt-BR', {
+                        <td>A) Rede Bancária - {formData.bRBancaria} Boletos</td>
+                        <td>{custosUnitarios.RBancaria.toLocaleString('pt-BR', {
                             style: "currency",
                             currency: "BRL",
                         })}</td>
-                        <td className={rBoletoStl.center}>{totais.rBancaria.toLocaleString('pt-BR', {
-                            style: "currency",
-                            currency: "BRL",
-                        })}</td>
-                    </tr>
-                    <tr>
-                        <td className={rBoletoStl.center}>B) Rede SICOOB - {formData.bRSicoob} Boletos</td>
-                        <td className={rBoletoStl.center}>{custosUnitarios.RSicoob.toLocaleString('pt-BR', {
-                            style: "currency",
-                            currency: "BRL",
-                        })}</td>
-                        <td className={rBoletoStl.center}>{totais.rSicoob.toLocaleString('pt-BR', {
+                        <td>{totais.rBancaria.toLocaleString('pt-BR', {
                             style: "currency",
                             currency: "BRL",
                         })}</td>
                     </tr>
                     <tr>
-                        <td className={rBoletoStl.center}>C) Liquidação Própria Cooperativa - {formData.bLPropriaCoop} Boletos</td>
-                        <td className={rBoletoStl.center}>{custosUnitarios.LiqPropCoop.toLocaleString('pt-BR', {
+                        <td>B) Rede SICOOB - {formData.bRSicoob} Boletos</td>
+                        <td>{custosUnitarios.RSicoob.toLocaleString('pt-BR', {
                             style: "currency",
                             currency: "BRL",
                         })}</td>
-                        <td className={rBoletoStl.center}>{totais.liqPropCoop.toLocaleString('pt-BR', {
-                            style: "currency",
-                            currency: "BRL",
-                        })}</td>
-                    </tr>
-                    <tr>
-                        <td className={rBoletoStl.center}>D) Correspondente Bancário - {formData.bCorrespBancario} Boletos</td>
-                        <td className={rBoletoStl.center}>{custosUnitarios.CorrespBancario.toLocaleString('pt-BR', {
-                            style: "currency",
-                            currency: "BRL",
-                        })}</td>
-                        <td className={rBoletoStl.center}>{totais.correspBancario.toLocaleString('pt-BR', {
+                        <td>{totais.rSicoob.toLocaleString('pt-BR', {
                             style: "currency",
                             currency: "BRL",
                         })}</td>
                     </tr>
                     <tr>
-                        <td className={rBoletoStl.center}>E) Processamento - {formData.qtdBoletos} Boletos</td> {/**TALVEZ A QUANTIDADE LIQUIDADA DOS BOLETOS */}
-                        <td className={rBoletoStl.center}>{custosUnitarios.Processamento.toLocaleString('pt-BR', {
+                        <td>C) Liquidação Própria Cooperativa - {formData.bLPropriaCoop} Boletos</td>
+                        <td>{custosUnitarios.LiqPropCoop.toLocaleString('pt-BR', {
                             style: "currency",
                             currency: "BRL",
                         })}</td>
-                        <td className={rBoletoStl.center}>???</td>
-                    </tr>
-                    <tr>
-                        <td className={rBoletoStl.center}>D) Tarifa Nova Cobrança - ??? Boletos</td> {/**100% DOS BOLETOS */}
-                        <td className={rBoletoStl.center}>{custosUnitarios.TrfNovaCobranca.toLocaleString('pt-BR', {
-                            style: "currency",
-                            currency: "BRL",
-                        })}</td>
-                        <td className={rBoletoStl.center}>{totais.tarifaNovaCobranca.toLocaleString('pt-BR', {
+                        <td>{totais.liqPropCoop.toLocaleString('pt-BR', {
                             style: "currency",
                             currency: "BRL",
                         })}</td>
                     </tr>
                     <tr>
-                        <td className={rBoletoStl.center}>= Custos Totais:</td>
-                        <td className={rBoletoStl.center}>{custosUnitarios.custoTotal}</td> {/**ESTÁ ERRADO, CONFERIR COM O DEDÉ*/}
-                        <td className={rBoletoStl.center}>{totais.total.toLocaleString('pt-BR', {
+                        <td>D) Correspondente Bancário - {formData.bCorrespBancario} Boletos</td>
+                        <td>{custosUnitarios.CorrespBancario.toLocaleString('pt-BR', {
+                            style: "currency",
+                            currency: "BRL",
+                        })}</td>
+                        <td>{totais.correspBancario.toLocaleString('pt-BR', {
+                            style: "currency",
+                            currency: "BRL",
+                        })}</td>
+                    </tr>
+                    <tr>
+                        <td>E) Processamento - {formData.qtdBoletos} Boletos</td> {/**TALVEZ A QUANTIDADE LIQUIDADA DOS BOLETOS */}
+                        <td>{custosUnitarios.Processamento.toLocaleString('pt-BR', {
+                            style: "currency",
+                            currency: "BRL",
+                        })}</td>
+                        <td>???</td>
+                    </tr>
+                    <tr>
+                        <td>D) Tarifa Nova Cobrança - ??? Boletos</td> {/**100% DOS BOLETOS */}
+                        <td>{custosUnitarios.TrfNovaCobranca.toLocaleString('pt-BR', {
+                            style: "currency",
+                            currency: "BRL",
+                        })}</td>
+                        <td>{totais.tarifaNovaCobranca.toLocaleString('pt-BR', {
+                            style: "currency",
+                            currency: "BRL",
+                        })}</td>
+                    </tr>
+                    <tr>
+                        <td>= Custos Totais:</td>
+                        <td>{custosUnitarios.custoTotal}</td> {/**ESTÁ ERRADO, CONFERIR COM O DEDÉ*/}
+                        <td>{totais.total.toLocaleString('pt-BR', {
                             style: "currency",
                             currency: "BRL",
                         })}</td>

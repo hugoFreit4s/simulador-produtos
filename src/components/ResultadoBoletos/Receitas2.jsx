@@ -1,6 +1,6 @@
 import { useFormContext } from "../../contexts/FormContext";
 import { useRef, useState } from "react";
-import rBoletoStl from '../../pages/ResultadoBoleto.module.css';
+import rBoletoStl from './ResultadoBoleto.module.css';
 import InputCurrency from "../InputCurrency";
 
 function Receitas2() {

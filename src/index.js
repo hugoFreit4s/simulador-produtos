@@ -6,7 +6,7 @@ import App from './App';
 import Boletos from './pages/Boletos';
 import Produtos from './pages/Produtos';
 import ListaProdutos from './pages/ListaProdutos';
-import ResultadoBoleto from './pages/ResultadoBoleto';
+import ResultadoBoleto from './components/ResultadoBoletos/ResultadoBoleto';
 import Menu from './pages/Menu';
 import { FormProvider } from './contexts/FormContext';
 import PrivateRoute from './components/PrivateRoute';
