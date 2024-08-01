@@ -9,6 +9,7 @@ import { CentralizacaoFinanceira1, CentralizacaoFinanceira2 } from './Centraliza
 import Receitas from './Receitas';
 import Receitas2 from './Receitas2';
 import TabelaCustosCompensacao from './TabelaCustosCompensacao';
+import TabelaPontoEquilibrio from './TabelaPontoEquilibrio';
 
 const ResultadoBoleto = () => {
     const { formData, setFormData } = useFormContext();
@@ -54,6 +55,10 @@ const ResultadoBoleto = () => {
 
             <div className={rBoletoStl.section}>
                 <TabelaCustosCompensacao />
+            </div>
+
+            <div className={rBoletoStl.section}>
+                <TabelaPontoEquilibrio />
             </div>
 
             <div className="print">

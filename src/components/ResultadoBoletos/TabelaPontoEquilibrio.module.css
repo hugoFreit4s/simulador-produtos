@@ -1,0 +1,43 @@
+.tablepeStl {
+    overflow-x: scroll;
+    font-family: 'Roboto Serif', serif;
+    border-collapse: collapse;
+    margin: 40px;
+    border-radius: 30px;
+}
+
+.tablepeStl th {
+    background-color: white;
+    color: black;
+    font-weight: 700;
+}
+
+.tablepeStl table th,
+td {
+    border: 2px solid black;
+}
+
+.tablepeStl tr:nth-child(odd) {
+    background-color: #00AE9D;
+}
+
+.tablepeStl tr:nth-child(odd):hover {
+    background-color: #1CC2A6;
+}
+
+.tablepeStl tr:nth-child(even) {
+    background-color: #49479D;
+}
+
+.tablepeStl tr:nth-child(even):hover {
+    background-color: #6A69C1;
+}
+
+.tablepeStl td {
+    font-weight: 400;
+    padding: 0.5em;
+}
+
+.tablepeStl td:hover {
+    cursor: pointer;
+}
