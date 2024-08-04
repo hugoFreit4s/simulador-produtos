@@ -52,7 +52,7 @@ function Menu() {
             <div className={stl.outside}>
                 <div className={stl.talktous}>
                     <div>
-                        <h1>Fale Conosco</h1>
+                        <h1 style={{fontWeight: '200'}}>Fale Conosco</h1>
                         <p className={stl.outsidetext}>Sugestões, Dúvidas e Suporte: <br />Abra um fluxo direcionado a equipe de BI com o tema “Simulador de Produtos” na Intranet</p>
                     </div>
                     <div className={stl.btn}>

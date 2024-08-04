@@ -53,7 +53,7 @@ function Boletos() {
 
     useEffect(() => {
         const checkTotalPercentage = () => {
-            const total = Number(formData.percentageTBaixadosPCedente || 0) + Number(formData.percentageTBaixadosDecurso || 0) + 20; // 20 is the value from DisplayInfo
+            const total = Number(formData.percentageTBaixadosPCedente || 0) + Number(formData.percentageTBaixadosDecurso || 0) + 20;
             const allFieldsFilled = [formData.qtdBoletos, formData.percentageTLiquidados, formData.percentageTBaixadosPCedente, formData.percentageTBaixadosDecurso, formData.diasFloat, formData.ticketMedio].every(field => field !== '' && field !== null && field !== undefined);
             const allValuesValid = [formData.percentageTLiquidados, formData.percentageTBaixadosPCedente, formData.percentageTBaixadosDecurso].every(field => field >= 0 && field <= 100);
 
