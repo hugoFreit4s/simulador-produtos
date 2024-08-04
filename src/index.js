@@ -6,7 +6,7 @@ import App from './App';
 import Boletos from './pages/Boletos';
 import Produtos from './pages/Produtos';
 import ListaProdutos from './pages/ListaProdutos';
-import ResultadoBoleto from './pages/ResultadoBoleto';
+import ResultadoBoleto from './components/ResultadoBoletos/ResultadoBoleto';
 import Menu from './pages/Menu';
 import { FormProvider } from './contexts/FormContext';
 import PrivateRoute from './components/PrivateRoute';
@@ -22,8 +22,8 @@ root.render(
         <Route path="/boletos" element={<Boletos />} />
         <Route path="/produtos" element={<Produtos />} />
         <Route path="/lista-produtos" element={<ListaProdutos />} />
-        <Route path="/resultado-boleto" element={<PrivateRoute element={<ResultadoBoleto />} />} />
         <Route path="/menu" element={<Menu />} />
+        <Route path="/resultado-boleto" element={<PrivateRoute element={<ResultadoBoleto />} />} />
       </Routes>
     </Router>
   </FormProvider>

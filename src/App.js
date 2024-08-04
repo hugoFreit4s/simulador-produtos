@@ -9,7 +9,7 @@ function App() {
   return (
     <div className={styles.App}>
       <div className={styles.main}>
-        <h1 className={styles.h1}>Simulador de Produtos</h1>
+        <h1 className={styles.h1} style={{fontWeight: '200'}}>Simulador de Produtos</h1>
         <p className={styles.homepagetxt}>Uma solução simples. <br />Uma solução Sicoob Vale do Aço.</p>
         <img src='logowhitevertical.png' alt='logo' style={{ height: '80px', width: '120px' }} />
         <div className={styles.navigation}>

@@ -7,7 +7,7 @@ function DisplayInfo({ title, data }) {
                 <div className={displayStl.title}>
                     <p>{title}</p>
                 </div>
-                <div className={displayStl.info}>{data}</div>
+                <div className={displayStl.info}><p>{data}</p></div>
             </div>
         </div>
     )

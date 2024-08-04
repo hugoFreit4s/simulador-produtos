@@ -1,5 +1,3 @@
-// src/components/ProtectedRoute.js
-
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useFormContext } from '../contexts/FormContext';
@@ -9,11 +7,11 @@ const PrivateRoute = ({ element: Component, ...rest }) => {
 
     const isFormValid = () => {
         const requiredFields = ['percentageTLiquidados', 'percentageTBaixadosPCedente', 'percentageTBaixadosDecurso'];
-        const totalPercentage = (Number(formData.percentageTBaixadosPCedente) || 0) +
-            (Number(formData.percentageTBaixadosDecurso) || 0) + 20; // 20 é o valor fixo
+        const totalPercentage = (Number(formData.percentageTBaixadosPCedente) || 0) + (Number(formData.percentageTBaixadosDecurso) || 0);
+        const reference = (Number(formData.percentageTEBaixados))
 
         const areFieldsFilled = requiredFields.every(field => formData[field] !== undefined && formData[field] !== '');
-        const isTotalValid = totalPercentage === 100;
+        const isTotalValid = totalPercentage === reference;
 
         return areFieldsFilled && isTotalValid;
     };

@@ -13,18 +13,24 @@
     padding-bottom: 30px;
 }
 
-.section h1{
+.section h1 {
     text-align: center;
 }
 
-.checkbox{
+.duplicatedsection {
+    display: flex;
+    background-color: red;
+}
+
+.checkbox {
     font-family: 'Roboto Serif', serif;
     display: flex;
     align-items: center;
     gap: 20px;
+    margin-left: 150px;
 }
 
-.subcheckbox{
+.subcheckbox {
     display: flex;
     gap: 5px;
 }

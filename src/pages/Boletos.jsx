@@ -1,5 +1,5 @@
 import boletoStyle from './Boletos.module.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormContext } from '../contexts/FormContext';
 import Button from '@mui/joy/Button';
@@ -10,14 +10,26 @@ import DisplayInfo from '../components/DisplayInfo';
 import DisableNumberScroll from '../utils/DisableNumberScroll';
 
 function Boletos() {
+    localStorage.setItem('percentageRedeBancaria', 43);
+    localStorage.setItem('percentageRedeSICOOB', 7);
+    localStorage.setItem('percentageLiquidacaoPropriaCoop', 7);
+    localStorage.setItem('percentageLiquidacaoCorrespBancario', 43);
+
+    const messagesStyle = {
+        color: '#55efc4',
+        fontFamily: "'Roboto Serif', serif",
+        textAlign: 'center'
+    }
+
     DisableNumberScroll();
     const { formData, setFormData } = useFormContext();
     const [error, setError] = useState({
         percentageTLiquidados: '',
         percentageTBaixadosPCedente: '',
         percentageTBaixadosDecurso: '',
-        totalPercentageError: ''
+        totalPercentageMessage: ''
     });
+
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
     const validateAndSetField = (field, value) => {
@@ -51,29 +63,43 @@ function Boletos() {
         }));
     };
 
+    const callTwoFunctions = (field, value) => {
+        handleInputChange(field, value);
+    };
+
+    const checkTotalPercentage = useCallback(() => {
+    const total = Number(formData.percentageTBaixadosPCedente || 0) + Number(formData.percentageTBaixadosDecurso || 0);
+    const reference = Number(localStorage.getItem('percentageTitulosEmitidosBaixados'));
+    const allFieldsFilled = [formData.percentageTEBaixados, formData.qtdBoletos, formData.percentageTLiquidados, formData.percentageTBaixadosPCedente, formData.percentageTBaixadosDecurso, formData.diasFloat, formData.ticketMedio]
+        .every(field => field !== '' && field !== null && field !== undefined);
+    const allValuesValid = [formData.percentageTEBaixados, formData.percentageTLiquidados, formData.percentageTBaixadosPCedente, formData.percentageTBaixadosDecurso]
+        .every(field => Number(field) >= 0 && Number(field) <= 100);
+
+    if (total < reference) {
+        setError((prevError) => ({
+            ...prevError,
+            totalPercentageMessage: 'A soma dos valores está menor do que o exigido. (I + II = Títulos emitidos que são baixados)',
+        }));
+    } else if (total > reference) {
+        setError((prevError) => ({
+            ...prevError,
+            totalPercentageMessage: 'A soma dos valores está maior do que o exigido. (I + II = Títulos emitidos que são baixados)',
+        }));
+    } else {
+        setError((prevError) => ({
+            ...prevError,
+            totalPercentageMessage: 'Soma ok!',
+        }));
+    }
+
+    const shouldEnableButton = total === reference && allFieldsFilled && allValuesValid;
+    setIsButtonDisabled(!shouldEnableButton);
+}, [formData]);
+
+
     useEffect(() => {
-        const checkTotalPercentage = () => {
-            const total = Number(formData.percentageTBaixadosPCedente || 0) + Number(formData.percentageTBaixadosDecurso || 0) + 20;
-            const allFieldsFilled = [formData.qtdBoletos, formData.percentageTLiquidados, formData.percentageTBaixadosPCedente, formData.percentageTBaixadosDecurso, formData.diasFloat, formData.ticketMedio].every(field => field !== '' && field !== null && field !== undefined);
-            const allValuesValid = [formData.percentageTLiquidados, formData.percentageTBaixadosPCedente, formData.percentageTBaixadosDecurso].every(field => field >= 0 && field <= 100);
-
-            if (total !== 100) {
-                setError((prevError) => ({
-                    ...prevError,
-                    totalPercentageError: 'Soma das porcentagens diferente de 100%'
-                }));
-            } else {
-                setError((prevError) => ({
-                    ...prevError,
-                    totalPercentageError: ''
-                }));
-            }
-
-            setIsButtonDisabled(!(total === 100 && allFieldsFilled && allValuesValid));
-        };
-
         checkTotalPercentage();
-    }, [formData]);
+    }, [formData, checkTotalPercentage]);
 
     useEffect(() => {
         const handleUnload = () => {
@@ -109,12 +135,12 @@ function Boletos() {
                         <DisplayInfo title={'(IV) % da quantidade em liquidação correspondente bancária'} data={43} />
                     </div>
                     <div>
-                        <DisplayInfo title={'A.3) % dos titulos emitidos que são baixados'} data={20} />
-                        <InputCurrency type="number" className="input" value={formData.percentageTBaixadosPCedente} onChange={(e) => handleInputChange('percentageTBaixadosPCedente', e.target.value)} onBlur={(e) => validateAndSetField('percentageTBaixadosPCedente', e.target.value)} placeholder={'Insira aqui!'} title={'(I) % dos títulos baixados pedido cedente'} />
-                        {error.percentageTBaixadosPCedente && <p style={{ color: 'red', fontFamily: "'Roboto Serif', serif", textAlign: 'center' }}>{error.percentageTBaixadosPCedente}</p>}
-                        <InputCurrency type="number" className="input" value={formData.percentageTBaixadosDecurso} onChange={(e) => handleInputChange('percentageTBaixadosDecurso', e.target.value)} onBlur={(e) => validateAndSetField('percentageTBaixadosDecurso', e.target.value)} placeholder={'Insira aqui!'} title={'(II) % dos títulos baixados por decurso de prazo'} />
-                        {error.percentageTBaixadosDecurso && <p style={{ color: 'red', fontFamily: "'Roboto Serif', serif", textAlign: 'center' }}>{error.percentageTBaixadosDecurso}</p>}
-                        {error.totalPercentageError && <p style={{ color: 'red', fontFamily: "'Roboto Serif', serif", textAlign: 'center' }}>{error.totalPercentageError}</p>}
+                        <DisplayInfo title={'A.3) % dos titulos emitidos que são baixados'} data={`${100 - localStorage.getItem('percentageTLiquidados')}`} onBlur={(e) => validateAndSetField('percentageTLiquidados', e.target.value)} {...localStorage.setItem('percentageTitulosEmitidosBaixados', 100 - localStorage.getItem('percentageTLiquidados'))} />
+                        <InputCurrency type="number" className="input" value={formData.percentageTBaixadosPCedente} onChange={(e) => callTwoFunctions('percentageTBaixadosPCedente', e.target.value)} onBlur={(e) => validateAndSetField('percentageTBaixadosPCedente', e.target.value)} placeholder={'Insira aqui!'} title={'(I) % dos títulos baixados pedido cedente'} />
+                        {error.percentageTBaixadosPCedente && <p style={messagesStyle}>{error.percentageTBaixadosPCedente}</p>}
+                        <InputCurrency type="number" className="input" value={formData.percentageTBaixadosDecurso} onChange={(e) => callTwoFunctions('percentageTBaixadosDecurso', e.target.value)} onBlur={(e) => validateAndSetField('percentageTBaixadosDecurso', e.target.value)} placeholder={'Insira aqui!'} title={'(II) % dos títulos baixados por decurso de prazo'} />
+                        {error.percentageTBaixadosDecurso && <p style={messagesStyle}>{error.percentageTBaixadosDecurso}</p>}
+                        {error.totalPercentageMessage && <p style={messagesStyle}>{error.totalPercentageMessage}</p>}
                     </div>
                     <div>
                         <DisplayInfo title={'A.4) % Direcionadores para precificação do Funding'} data={100} />

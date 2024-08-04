@@ -1,5 +1,5 @@
-// Printer.js
 import React from 'react';
+import PrintContent from './PrintContent';
 
 class Printer extends React.Component {
     render() {
@@ -7,8 +7,7 @@ class Printer extends React.Component {
 
         return (
             <div>
-                <h1 style={{color: 'black'}}>Saldo Médio</h1>
-                <p style={{color: 'black'}}>{saldoMedio}</p>
+                <PrintContent />
             </div>
         );
     }
